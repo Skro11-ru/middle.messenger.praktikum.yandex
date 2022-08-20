@@ -1,0 +1,10 @@
+/* Mixin that can be used to create a shadow. */
+@mixin shadow {
+  @include transition();
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.14);
+}
+
+/* Mixin that can be used to create a transition. */
+@mixin transition {
+  transition: all 0.3s linear;
+}
