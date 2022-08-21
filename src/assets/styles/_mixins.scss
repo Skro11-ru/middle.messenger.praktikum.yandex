@@ -8,3 +8,26 @@
 @mixin transition {
   transition: all 0.3s linear;
 }
+
+/* Mixin that can be used to create a link. */
+@mixin link($color, $type: 'button') {
+  @if $type== 'link' {
+    color: $color;
+    &:hover {
+      color: transparentize($color, 0.2);
+    }
+    &:active {
+      color: transparentize($color, 0.5);
+    }
+  } @else {
+    background-color: $color;
+    &:hover {
+      background-color: transparentize($color, 0.2);
+    }
+    &:active {
+      background-color: transparentize($color, 0.5);
+    }
+  }
+
+  @include transition;
+}
