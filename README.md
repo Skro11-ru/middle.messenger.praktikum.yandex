@@ -1,6 +1,6 @@
 # Учебный проект Яндекс.Практикума: веб-приложение «Чат»
 
-[Pull request](https://github.com/Skro11-ru/middle.messenger.praktikum.yandex/pull/2)
+[Pull request](https://github.com/Skro11-ru/middle.messenger.praktikum.yandex/pull/1)
 
 ### Результат выполнения:
 
