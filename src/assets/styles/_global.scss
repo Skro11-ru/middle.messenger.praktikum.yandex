@@ -9,3 +9,23 @@ body {
   font-family: Inter, sans-serif;
   display: flex;
 }
+
+.link {
+  color: $color-primary !important;
+  @include transition;
+  &:hover {
+    color: transparentize($color-primary, 0.2) !important;
+  }
+  &:active {
+    color: transparentize($color-primary, 0.5) !important;
+  }
+  &--danger {
+    color: $color-font-danger !important;
+    &:hover {
+      color: transparentize($color-font-danger, 0.2) !important;
+    }
+    &:active {
+      color: transparentize($color-font-danger, 0.5) !important;
+    }
+  }
+}

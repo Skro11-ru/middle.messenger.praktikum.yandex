@@ -14,5 +14,11 @@
 @import '/src/modules/ui-kit/input-ui/input-ui';
 @import '/src/modules/ui-kit/button-ui/button-ui';
 @import '/src/modules/ui-kit/plug/plug';
+@import '/src/modules/ui-kit/plug/404/404';
+@import '/src/modules/ui-kit/plug/500/500';
 @import '/src/modules/login/view/login';
 @import '/src/modules/registration/view/registration';
+@import 'src/modules/profile/components/profile-row/profile-row';
+@import 'src/modules/profile/components/profile-avatar/profile-avatar';
+@import '/src/modules/profile/view/profile/profile';
+@import '/src/modules/profile/components/profile-sidebar/profile-sidebar';
