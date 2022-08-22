@@ -1,4 +1,3 @@
-import '/src/helpers/index';
 import '/src/modules/ui-kit/input-ui/input-ui';
 import '/src/modules/profile/components/profile-row/profile-row';
 import '/src/modules/profile/components/profile-avatar/profile-avatar';
