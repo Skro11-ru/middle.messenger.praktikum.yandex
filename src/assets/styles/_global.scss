@@ -10,22 +10,22 @@ body {
   display: flex;
 }
 
-.link {
-  color: $color-primary !important;
+a.link {
+  color: $color-primary;
   @include transition;
   &:hover {
-    color: transparentize($color-primary, 0.2) !important;
+    color: transparentize($color-primary, 0.2);
   }
   &:active {
-    color: transparentize($color-primary, 0.5) !important;
+    color: transparentize($color-primary, 0.5);
   }
   &--danger {
-    color: $color-font-danger !important;
+    color: $color-font-danger;
     &:hover {
-      color: transparentize($color-font-danger, 0.2) !important;
+      color: transparentize($color-font-danger, 0.2);
     }
     &:active {
-      color: transparentize($color-font-danger, 0.5) !important;
+      color: transparentize($color-font-danger, 0.5) A;
     }
   }
 }

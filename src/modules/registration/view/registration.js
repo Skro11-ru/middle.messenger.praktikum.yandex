@@ -8,8 +8,8 @@ onsubmit = (event) => {
   event.preventDefault();
   const email = document.querySelector('#email');
   const login = document.querySelector('#login');
-  const name = document.querySelector('#name');
-  const lastName = document.querySelector('#lastName');
+  const name = document.querySelector('#first_name');
+  const lastName = document.querySelector('#second_name');
   const phone = document.querySelector('#phone');
   const password = document.querySelector('#password');
   const passwordAgain = document.querySelector('#passwordAgain');
@@ -24,6 +24,9 @@ onsubmit = (event) => {
 };
 
 const validateData = (type, value) => {
+  if (!value) {
+    return false;
+  }
   switch (type) {
     case 'email': {
       const error = value.nextElementSibling.nextElementSibling;
@@ -64,4 +67,5 @@ const validateData = (type, value) => {
       break;
     }
   }
+  console.log(2);
 };

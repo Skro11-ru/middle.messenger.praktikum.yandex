@@ -4,8 +4,8 @@
   "description": "",
   "scripts": {
     "start": "npm run clear && npm run build && node server.js",
-    "clear": "rm -rf ./dist",
-    "dev": "parcel static/index.html",
+    "clear": "rimraf ./dist",
+    "dev": "npm run clear && parcel static/index.html",
     "build": "parcel build static/index.html"
   },
   "keywords": [],
@@ -15,12 +15,15 @@
     "@anikin/parcel-transformer-handlebars-precompile": "1.0.1",
     "@parcel/transformer-sass": "2.7.0",
     "autoprefixer": "10.4.8",
+    "dotenv": "^16.0.1",
     "express": "4.18.1",
     "parcel": "2.7.0",
     "postcss": "8.4.16",
     "postcss-modules": "4.3.1",
     "postcss-simple-vars": "6.0.3",
-    "prettier": "2.7.1"
+    "prettier": "2.7.1",
+    "process": "^0.11.10",
+    "rimraf": "^3.0.2"
   },
   "dependencies": {
     "handlebars": "4.7.7"

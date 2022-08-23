@@ -1,5 +1,6 @@
 import Handlebars from 'handlebars/dist/handlebars.runtime';
 import template from './login.hbs';
+
 Handlebars.registerPartial('login', template);
 window.addEventListener('submit', () => {});
 
@@ -9,14 +10,15 @@ onsubmit = (event) => {
   const password = document.querySelector('#password');
   const loginIsValid = validateData('login', login);
   const passwordIsValid = validateData('password', password);
-  console.log(loginIsValid);
-  console.log(passwordIsValid);
   if (loginIsValid && passwordIsValid) {
     window.location.pathname = '/chats';
   }
 };
 
 const validateData = (type, value) => {
+  if (!value) {
+    return false;
+  }
   switch (type) {
     case 'login':
       const error = value.nextElementSibling.nextElementSibling;
