@@ -1,0 +1,21 @@
+{{#if href}}
+  <div class='row'>
+    <a href='{{href}}' class='row__label link {{dangerClass}} '>{{label}}</a>
+  </div>
+{{else if input}}
+  <div class='row'>
+    <div class='row__label'>{{label}}</div>
+    <input
+      class='{{inputClass}}'
+      type='text'
+      name='{{value}}'
+      id='{{value}}'
+      value='{{value}}'
+    />
+  </div>
+{{else}}
+  <div class='row'>
+    <div class='row__label'>{{label}}</div>
+    <div class='row__value'>{{value}}</div>
+  </div>
+{{/if}}

@@ -1,0 +1,11 @@
+<section class='login'>
+  <h1 class='login__title'>Вход</h1>
+  <form action='' class='login__form'>
+    {{> input type="text" label="Логин" id="login" name="login" error="Неверный логин"}}
+    {{> input type="password" label="Пароль" id="password" name="password" error="Неверный пароль"}}
+    <div class='login__buttons'>
+        {{> button  label="Авторизоваться" class="primary"}}
+        {{> button href="/registration" label="Нет аккаунта?" class="secondary button--link"}}
+    </div>
+  </form>
+</section>
