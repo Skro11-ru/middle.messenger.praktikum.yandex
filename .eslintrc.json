@@ -1,0 +1,25 @@
+{
+  "plugins": ["@typescript-eslint", "prettier", "sonarjs", "unicorn"],
+  "extends": [
+    "airbnb-base",
+    "airbnb-typescript/base",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:sonarjs/recommended",
+    "plugin:unicorn/recommended",
+    "plugin:prettier/recommended",
+    "prettier"
+  ],
+  "env": {
+    "es2022": true,
+    "browser": true,
+    "node": true
+  },
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "project": "./tsconfig.json"
+  },
+  "parser": "@typescript-eslint/parser",
+  "rules": {
+    "max-len": [2, 100]
+  }
+}
