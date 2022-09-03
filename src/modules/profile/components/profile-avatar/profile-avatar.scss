@@ -3,16 +3,17 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
   &__image {
-    height: 130px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 130px;
+    height: 130px;
+    margin-bottom: 20px;
     background-color: $color-grey-secondary;
     border-radius: 50%;
-    display: flex;
-    position: relative;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 20px;
 
     &:hover {
       .profile-avatar__label {
@@ -22,18 +23,22 @@
   }
 
   &__label {
-    display: flex;
-    position: absolute;
-    align-items: center;
-    text-align: center;
-    height: 130px;
-    width: 130px;
-    background-color: transparentize($color-font-primary, 0.5);
-    cursor: pointer;
-    border-radius: 50%;
-    opacity: 0;
-    color: $color-secondary;
     @include transition;
+
+    position: absolute;
+
+    display: flex;
+    align-items: center;
+    width: 130px;
+    height: 130px;
+
+    color: $color-secondary;
+    text-align: center;
+
+    background-color: transparentize($color-font-primary, 0.5);
+    border-radius: 50%;
+    cursor: pointer;
+    opacity: 0;
   }
 
   &__input {

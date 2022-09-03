@@ -1,16 +1,16 @@
 /* Importing the normalize.scss file. */
-@import '_normalize';
+@import 'normalize.css';
 
 /* A partial reset of styles. */
-@import '_nullstyle';
+@import 'nullstyle';
 
 /* Importing the global styles. */
-@import '_global';
+@import 'global';
 
 /* Importing the fonts file. */
-@import '_fonts';
+@import 'fonts';
 
-/*Importing other files*/
+/* Importing other files */
 @import '/src/modules/ui-kit/input-ui/input-ui';
 @import '/src/modules/ui-kit/button-ui/button-ui';
 @import '/src/modules/ui-kit/plug/plug';

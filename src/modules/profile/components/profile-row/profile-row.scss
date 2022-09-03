@@ -1,15 +1,17 @@
 .row {
-  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
   padding: 10px 0;
   font-weight: 500;
   font-size: 13px;
   line-height: 13px;
+
   &:not(:last-child) {
     border-bottom: 1px solid $color-tertiary;
   }
+
   &__label {
     color: $color-font-primary;
   }
@@ -17,11 +19,12 @@
   &__value {
     color: $color-font-secondary;
   }
+
   &__input {
     all: unset;
     display: block;
     width: fit-content;
-    text-align: right;
     color: $color-grey;
+    text-align: right;
   }
 }

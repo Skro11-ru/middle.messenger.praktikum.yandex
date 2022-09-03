@@ -1,35 +1,40 @@
 .button {
+  @include transition;
+
   width: 100%;
   padding: 12px;
   border-radius: 8px;
-  @include transition;
+
   &:not(:last-child) {
     margin-bottom: 2px;
   }
+
   &--primary {
-    background-color: $color-primary;
+    @include link($color-primary);
+
+    color: $color-secondary;
     font-weight: 500;
     font-size: 13px;
     line-height: 13px;
-    color: $color-secondary;
-    @include link($color-primary);
+    background-color: $color-primary;
   }
 
   &--secondary {
-    background-color: $color-secondary;
+    @include link($color-primary, 'link');
+
+    color: $color-primary;
     font-weight: 500;
     font-size: 13px;
     line-height: 13px;
-    color: $color-primary;
-    @include link($color-primary, 'link');
+    background-color: $color-secondary;
   }
 
   &--link {
     display: block;
     width: 100%;
-    text-align: center;
     font-weight: 500;
     font-size: 11px;
     line-height: 11px;
+    text-align: center;
   }
 }

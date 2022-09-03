@@ -1,18 +1,21 @@
 .registration {
-  max-width: 340px;
+  @include shadow;
+
   width: 100%;
-  max-height: 615px;
+  max-width: 340px;
   height: 100%;
+  max-height: 615px;
+
   margin: auto;
   padding: 50px 30px 30px;
   border-radius: 12px;
-  @include shadow;
+
   &__title {
-    text-align: center;
+    margin-bottom: 50px;
     font-weight: 500;
     font-size: 20px;
     line-height: 20px;
-    margin-bottom: 50px;
+    text-align: center;
   }
 
   &__buttons {

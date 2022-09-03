@@ -5,9 +5,10 @@
   box-sizing: border-box;
 }
 
-/* Removing padding */
+/* Removing the default styling for ul */
 ul {
   padding: 0;
+  list-style: none;
 }
 
 /* Removing margins */
@@ -36,12 +37,7 @@ html {
 /* Set the default basic settings for body */
 body {
   min-height: 100vh;
-  text-rendering: optimizeSpeed;
-}
-
-/* Removing the default styling for ul */
-ul {
-  list-style: none;
+  text-rendering: optimizespeed;
 }
 
 /* Resetting default styles for links */
@@ -54,17 +50,17 @@ a:hover {
 /* Resetting default styles for buttons */
 button {
   padding: 0;
-  border: none;
-  font: inherit;
   color: inherit;
+  font: inherit;
   background-color: transparent;
+  border: none;
   cursor: pointer;
 }
 
 /* Making it easy to work with images */
 img {
-  max-width: 100%;
   display: block;
+  max-width: 100%;
 }
 
 /* Specify a clear periodicity in the data flow of the article */

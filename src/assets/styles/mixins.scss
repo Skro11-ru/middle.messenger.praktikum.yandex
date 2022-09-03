@@ -1,7 +1,8 @@
 /* Mixin that can be used to create a shadow. */
 @mixin shadow {
-  @include transition();
-  box-shadow: 0 0 6px rgba(0, 0, 0, 0.14);
+  @include transition;
+
+  box-shadow: 0 0 6px rgb(0 0 0 / 14%);
 }
 
 /* Mixin that can be used to create a transition. */
@@ -11,23 +12,27 @@
 
 /* Mixin that can be used to create a link. */
 @mixin link($color, $type: 'button') {
-  @if $type== 'link' {
+  @include transition;
+
+  @if $type == 'link' {
     color: $color;
+
     &:hover {
       color: transparentize($color, 0.2);
     }
+
     &:active {
       color: transparentize($color, 0.5);
     }
   } @else {
     background-color: $color;
+
     &:hover {
       background-color: transparentize($color, 0.2);
     }
+
     &:active {
       background-color: transparentize($color, 0.5);
     }
   }
-
-  @include transition;
 }
