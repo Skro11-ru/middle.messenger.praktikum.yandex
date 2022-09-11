@@ -1,17 +1,24 @@
-{{> profile-sidebar }}
 <div class='profile'>
-  {{> profile-avatar name="Иван" }}
-  <div class='profile__info'>
-      {{> row label="Почта" value="pochta@yandex.ru"}}
-      {{> row label="Логин" value="ivanivanov"}}
-      {{> row label="Имя" value="Иван"}}
-      {{> row label="Фамилия" value="Иванов"}}
-      {{> row label="Имя в чате" value="Иван"}}
-      {{> row label="Телефон" value="+7 (909) 967 30 30"}}
+  <div class='profile__sidebar'>
+        {{{profileSidebar}}}
   </div>
-  <div class='profile__controls'>
-      {{> row label="Изменить данные" href="/profile-edit" }}
-      {{> row label="Изменить пароль" href="/profile-edit-password" }}
-      {{> row label="Выйти" href="/login" dangerClass="link--danger"}}
+  <div class='profile__main'>
+    {{{profileAvatar}}}
+    <div class='profile__info'>
+          {{{profileRowEmail}}}
+          {{{profileRowLogin}}}
+          {{{profileRowFirstName}}}
+          {{{profileRowSecondName}}}
+          {{{profileRowPhone}}}
+          {{{profileRowPassword}}}
+          {{{profileRowPasswordAgain}}}
+    </div>
+    <div class='profile__controls'>
+          {{{profileEditInfo}}}
+          {{{profileEditPassword}}}
+          {{{profileExit}}}
+    </div>
   </div>
 </div>
+
+

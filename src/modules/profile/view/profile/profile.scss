@@ -1,7 +1,12 @@
 .profile {
+  display: flex;
   width: 100%;
-  max-width: 510px;
-  margin: auto;
+
+  &__main {
+    width: 100%;
+    max-width: 510px;
+    margin: auto;
+  }
 
   &__info {
     margin-bottom: 60px;
