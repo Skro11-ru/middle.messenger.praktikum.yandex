@@ -1,64 +1,42 @@
-import '/src/modules/ui-kit/input-ui/input-ui';
-import '/src/modules/profile/components/profile-row/profile-row';
-import '/src/modules/profile/components/profile-avatar/profile-avatar';
-import '/src/modules/profile/components/profile-sidebar/profile-sidebar';
-
-// import '/src/modules/registration/view/registration';
-import '/src/modules/ui-kit/button-ui/button-ui';
-import login from './src/modules/login/view/login.hbs';
-import registration from './src/modules/registration/view/registration.hbs';
-import profile from './src/modules/profile/view/profile/profile.hbs';
-import profileEdit from './src/modules/profile/view/profile-edit/profile-edit.hbs';
-import profileEditPassword from './src/modules/profile/view/profile-edit-password/profile-edit-password.hbs';
-import plug from './src/modules/ui-kit/plug/plug.hbs';
-import page404 from './src/modules/ui-kit/plug/404/404.hbs';
-import page500 from './src/modules/ui-kit/plug/500/500.hbs';
+import renderDom from './src/helpers/renderDOM';
+import { Login } from './src/modules/Login/view/Login';
+import { Registration } from './src/modules/Registration/view/Registration';
+import { Profile } from './src/modules/profile/view/Profile/Profile';
+import { ProfileEdit } from './src/modules/profile/view/ProfileEdit/ProfileEdit';
+import { Error500 } from './src/modules/UiKit/plug/500/500';
+import { Error404 } from './src/modules/UiKit/plug/404/404';
+import { ChatsPage } from './src/modules/Chat/view/Chat';
 
 window.addEventListener('DOMContentLoaded', async () => {
-  const app = document.querySelector('#app');
   const path = window.location.pathname;
   switch (path) {
     case '/':
-      require('/src/modules/login/view/login');
-      app.innerHTML = login();
+      renderDom('#app', new Login({ title: 'Вход' }));
       break;
     case '/login':
-      require('/src/modules/login/view/login');
-      app.innerHTML = login();
+      renderDom('#app', new Login({ title: 'Вход' }));
       break;
     case '/registration':
-      require('/src/modules/registration/view/registration');
-      app.innerHTML = registration();
+      renderDom('#app', new Registration({ title: 'Регистрация' }));
       break;
-    case '/profile':
-      require('/src/modules/profile/view/profile/profile');
-      app.innerHTML = profile();
+    case '/Profile':
+      renderDom('#app', new Profile({ title: 'Профиль' }));
       break;
-    case '/profile-edit':
-      require('/src/modules/profile/view/profile-edit/profile-edit');
-      app.innerHTML = profileEdit();
+    case '/ProfileEdit':
+      renderDom('#app', new ProfileEdit({ title: 'Редактирование' }));
+
       break;
-    case '/profile-edit-password':
-      require('/src/modules/profile/view/profile-edit-password/profile-edit-password');
-      app.innerHTML = profileEditPassword();
+    case '/ProfileEdit-password':
       break;
     case '/chats':
-      require('/src/modules/ui-kit/plug/plug');
-      app.innerHTML = plug();
+      renderDom('#app', new ChatsPage({ title: 'Редактирование' }));
       break;
     case '/500':
-      require('/src/modules/ui-kit/plug/500/500');
-      app.innerHTML = page500();
+      renderDom('#app', new Error500({ title: '500', text: 'Мы уже фиксим' }));
+
       break;
     default:
-      require('/src/modules/ui-kit/plug/404/404');
-      app.innerHTML = page404();
+      renderDom('#app', new Error404({ title: '404', text: 'Не туда попали' }));
       break;
-
-    //  todo:вернуть к данной реализации позднее
-    // case `${path}`:
-    //   require(`/src/modules${path}/view${path}`);
-    //   app.innerHTML = login();
-    //   break;
   }
 });

@@ -1,16 +1,16 @@
 <section class='registration'>
   <h2 class='registration__title'>Регистрация</h2>
   <form action='' class='registration__form'>
-    {{> input type="email" label="Почта" id="email" name="email" error="Неверная почта"}}
-    {{> input type="text" label="Логин" id="login" name="login" error="Неверный логин"}}
-    {{> input type="text" label="Имя" id="first_name" name="first_name" error="Неверное имя"}}
-    {{> input type="text" label="Фамиилия" id="second_name" name="second_name" error="Неверная фамиилия"}}
-    {{> input type="tel" label="Телефон" id="phone" name="phone" error="Неверный телефон"}}
-    {{> input type="password" label="Пароль" id="password" name="password" error="Неверный пароль"}}
-    {{> input type="password" label="Пароль (еще раз)" id="passwordAgain" name="passwordAgain" error="Пароли не совпадают"}}
+    {{{inputEmail}}}
+    {{{inputLogin}}}
+    {{{inputFirstName}}}
+    {{{inputSecondName}}}
+    {{{inputPhone}}}
+    {{{inputPassword}}}
+    {{{inputPasswordAgain}}}
     <div class='registration__buttons'>
-        {{> button  label="Зарегистрироваться" class="primary"}}
-        {{> button href="/login" label="Войти" class="secondary button--link"}}
+          {{{login}}}
+          {{{registration}}}
     </div>
   </form>
 </section>

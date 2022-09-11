@@ -6,6 +6,9 @@ interface IInput {
   type: string;
   label: string;
   name: string;
+  class?: string;
+  showLabel: boolean;
+  value?: string;
   events?: {
     blur?: (event: { target: HTMLInputElement }) => void;
     focus?: (event: { target: HTMLInputElement }) => void;
