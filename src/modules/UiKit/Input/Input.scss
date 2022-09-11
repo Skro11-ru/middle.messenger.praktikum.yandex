@@ -2,6 +2,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
+  min-height: 42px;
   margin-bottom: 10px;
 
   &__label {
@@ -36,6 +37,5 @@
     font-weight: 400;
     font-size: 8px;
     line-height: 8px;
-    opacity: 0;
   }
 }
