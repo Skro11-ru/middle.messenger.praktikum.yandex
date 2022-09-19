@@ -36,3 +36,14 @@
     }
   }
 }
+
+/* Mixin to create an ellipsis if the text exceeds the line width */
+@mixin textEllipsis($count) {
+  /* stylelint-disable-next-line */
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-word;
+  -webkit-line-clamp: $count;
+  -webkit-box-orient: vertical;
+}

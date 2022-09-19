@@ -1,0 +1,55 @@
+.chat {
+  display: flex;
+  width: 100%;
+}
+
+.chat-sidebar {
+  width: 100%;
+  max-width: 310px;
+  padding: 10px;
+  background-color: $color-light-grey;
+
+  &__search {
+    position: relative;
+
+    .input__control {
+      @include transition;
+
+      padding: 8px 0 8px 12px;
+      text-indent: 20px;
+      background-color: $color-grey-secondary;
+
+      background-repeat: no-repeat;
+      background-position: 70px 8px;
+      border-radius: 5px;
+
+      &::placeholder {
+        text-indent: 0;
+        transition: all 400ms;
+      }
+
+      &:focus {
+        &::placeholder {
+          text-indent: 500px;
+        }
+      }
+    }
+  }
+
+  .button--profile-link {
+    color: $color-font-secondary;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 12px;
+    text-align: right;
+  }
+}
+
+.chat-main {
+  width: 100%;
+  height: 100%;
+
+  &__window {
+    height: calc(100% - 100px);
+  }
+}

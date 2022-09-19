@@ -4,11 +4,12 @@ import * as styles from './Input.scss';
 
 interface IInput {
   type: string;
-  label: string;
+  label?: string;
   name: string;
   class?: string;
-  showLabel: boolean;
+  showLabel?: boolean;
   value?: string;
+  placeholder?: string;
   events?: {
     blur?: (event: { target: HTMLInputElement }) => void;
     focus?: (event: { target: HTMLInputElement }) => void;

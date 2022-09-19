@@ -4,7 +4,7 @@ import * as styles from './Button.scss';
 
 interface IButton {
   label: string;
-  class: string;
+  class?: string;
   href?: string;
   events?: {
     click?: (event: Event) => void;
