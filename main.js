@@ -1,11 +1,16 @@
 import renderDom from './src/helpers/renderDOM';
 import { Login } from './src/modules/Login/view/Login';
-import { Registration } from './src/modules/Registration/view/Registration';
-import { Profile } from './src/modules/Profile/view/Profile/Profile';
-import { ProfileEdit } from './src/modules/Profile/view/ProfileEdit/ProfileEdit';
-import { Error500 } from './src/modules/UiKit/plug/500/500';
-import { Error404 } from './src/modules/UiKit/plug/404/404';
+// eslint-disable-next-line import/extensions
+import { Registration } from './src/modules/Registration/view/Registration.ts';
+// eslint-disable-next-line import/extensions
+import { ProfileEdit } from './src/modules/Profile/view/ProfileEdit/ProfileEdit.ts';
+// eslint-disable-next-line import/extensions
+import { Error500 } from './src/modules/UiKit/plug/500/500.ts';
+// eslint-disable-next-line import/extensions
+import { Error404 } from './src/modules/UiKit/plug/404/404.ts';
 import { ChatsPage } from './src/modules/Chat/view/Chat';
+// eslint-disable-next-line import/extensions
+import { Profile } from './src/modules/Profile/view/Profile/Profile.ts';
 
 window.addEventListener('DOMContentLoaded', async () => {
   const path = window.location.pathname;
