@@ -54,7 +54,7 @@ export class ChatsPage extends Block {
     this.children.inputMess = new Input({
       name: 'messages',
       type: 'text',
-      class: 'chat-input',
+      class: 'input-message',
       placeholder: 'Сообщение',
     });
     this.children.button = new Button({
@@ -63,7 +63,7 @@ export class ChatsPage extends Block {
     });
     this.children.linkProfile = new Button({
       label: 'Профиль >',
-      href: '/Profile',
+      href: '/profile',
       class: 'profile-link',
     });
   }

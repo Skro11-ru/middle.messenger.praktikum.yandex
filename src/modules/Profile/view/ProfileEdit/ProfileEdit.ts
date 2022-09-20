@@ -53,7 +53,7 @@ export class ProfileEdit extends Block {
         label: 'Телефон',
         type: 'phone',
         name: 'phone',
-        value: '+7 (909) 967 30 30',
+        value: '+79099673030',
       },
     };
     this.children.profileSidebar = new ProfileSidebar({
@@ -61,7 +61,7 @@ export class ProfileEdit extends Block {
       events: {
         click: (event) => {
           event.preventDefault();
-          window.history.go(-1);
+          window.location.pathname = '/chats';
         },
       },
     });
@@ -73,11 +73,11 @@ export class ProfileEdit extends Block {
 
     this.children.profileEditInfo = new ProfileRow({
       label: 'Изменить данные',
-      href: '/ProfileEdit',
+      href: '/profileEdit',
     });
     this.children.profileEditPassword = new ProfileRow({
       label: 'Изменить пароль',
-      href: '/ProfileEdit-password',
+      href: '/profile-edit-password',
     });
     this.children.profileExit = new ProfileRow({
       label: 'Выйти',
@@ -89,6 +89,8 @@ export class ProfileEdit extends Block {
       this.children[`profileRow${firstCapitalLetter(key)}`] = new ProfileRow({
         label: value.label,
         value: value.value,
+        name: value.name,
+        type: value.type,
         isInput: true,
       });
     });
@@ -98,8 +100,8 @@ export class ProfileEdit extends Block {
       events: {
         click: (event) => {
           event.preventDefault();
-          if (formValidation('registration__form')) {
-            window.location.pathname = '/Profile';
+          if (formValidation('profile__form')) {
+            window.location.pathname = '/profile';
           }
         },
       },

@@ -59,7 +59,7 @@ export class Profile extends Block {
       events: {
         click: (event) => {
           event.preventDefault();
-          window.history.go(-1);
+          window.location.pathname = '/chats';
         },
       },
     });
@@ -71,11 +71,11 @@ export class Profile extends Block {
 
     this.children.profileEditInfo = new ProfileRow({
       label: 'Изменить данные',
-      href: '/ProfileEdit',
+      href: '/profileEdit',
     });
     this.children.profileEditPassword = new ProfileRow({
       label: 'Изменить пароль',
-      href: '/ProfileEdit-password',
+      href: '/profile-edit-password',
     });
     this.children.profileExit = new ProfileRow({
       label: 'Выйти',

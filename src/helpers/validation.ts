@@ -5,26 +5,23 @@ interface IFormData {
 const validationRules: Record<string, { rule: RegExp; error: string }> = {
   login: {
     rule: /^[\w-]{3,20}$/,
-    error:
-      'Латиница, цифры, дефис и нижнее подчёркивание. Количество символов от 3 до 20',
+    error: 'Латиница, цифры, дефис и нижнее подчёркивание. 3-20 символов',
   },
   password: {
     rule: /^(?=.*[A-Za-z])(?=.*\d)[\dA-Za-z]{6,40}$/,
-    error:
-      'Обязательно хотя бы одна заглавная буква и цифра. Количество символов от 6 до 40',
+    error: 'Обязательно хотя бы одна заглавная буква и цифра. 6-40 символов',
   },
   password_again: {
     rule: /^(?=.*[A-Za-z])(?=.*\d)[\dA-Za-z]{6,40}$/,
-    error:
-      'Обязательно хотя бы одна заглавная буква и цифра. Количество символов от 6 до 40',
+    error: 'Обязательно хотя бы одна заглавная буква и цифра. 6-40 символов',
   },
   email: {
     rule: /^[^\s@]+@[^\s@]+\.\S{2,}$/,
-    error: 'Латиница, цифры и спецсимволы. Количество символов от 2',
+    error: 'Латиница, цифры и спецсимволы. От 2 символов',
   },
   phone: {
     rule: /^\+*\({0,1}\d{1,3}\){0,1}[\d\s./-]*$/,
-    error: 'Цифры, допускается в начале "плюс". Количество символов от 6 до 40',
+    error: 'Цифры, допускается в начале "плюс". 6-40 символов',
   },
   first_name: {
     rule: /^[A-ZЁА-Я][A-Za-zЁА-яё-]+$/,
@@ -74,7 +71,7 @@ export const formValidation = (selectorForm: string) => {
   const inputs = form.querySelectorAll('input');
   const arrayForm: IFormData = {};
 
-  inputs.forEach((input) => {
+  inputs.forEach((input: HTMLInputElement) => {
     inputValidation(input.name, input.value);
   });
 
@@ -84,7 +81,7 @@ export const formValidation = (selectorForm: string) => {
     showErrorMessage(selectorForm, 'Все поля должны быть заполнены');
     return false;
   }
-  inputs.forEach((input) => {
+  inputs.forEach((input: HTMLInputElement) => {
     arrayForm[input.name] = input.value;
   });
 

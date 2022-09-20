@@ -6,6 +6,8 @@ import { ProfileEdit } from './src/modules/Profile/view/ProfileEdit/ProfileEdit'
 import { Error500 } from './src/modules/UiKit/plug/500/500';
 import { Error404 } from './src/modules/UiKit/plug/404/404';
 import { ChatsPage } from './src/modules/Chat/view/Chat';
+// eslint-disable-next-line max-len
+import { ProfileEditPassword } from './src/modules/Profile/view/ProfileEditPassword/ProfileEditPassword';
 
 window.addEventListener('DOMContentLoaded', async () => {
   const path = window.location.pathname;
@@ -25,7 +27,12 @@ window.addEventListener('DOMContentLoaded', async () => {
     case '/profileEdit':
       renderDom('#app', new ProfileEdit({ title: 'Редактирование' }));
       break;
-    case '/profileEdit-password':
+    case '/profile-edit-password':
+      renderDom(
+        '#app',
+        new ProfileEditPassword({ title: 'Редактирование пароля' }),
+      );
+
       break;
     case '/chats':
       renderDom('#app', new ChatsPage({ title: 'Редактирование' }));

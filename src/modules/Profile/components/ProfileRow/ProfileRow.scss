@@ -27,4 +27,15 @@
     color: $color-grey;
     text-align: right;
   }
+
+  .input {
+    min-height: auto;
+  }
+
+  .input__error {
+    top: 16px;
+    right: 0;
+    width: 350px;
+    text-align: end;
+  }
 }

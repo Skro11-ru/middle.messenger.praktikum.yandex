@@ -10,6 +10,8 @@ interface IProfileRow {
   label: string;
   value?: string;
   isInput?: boolean;
+  name?: string;
+  type?: string;
 }
 
 export class ProfileRow extends Block {
@@ -18,27 +20,11 @@ export class ProfileRow extends Block {
   }
 
   init() {
-    this.children.inputProfileEmail = new Input({
-      label: 'Почта',
-      type: 'email',
-      name: 'email',
-      value: 'pddddochta@yanddex.ru',
-      class: 'row__input',
-      showLabel: false,
-      events: {
-        focus: (event: { target: HTMLInputElement }) =>
-          inputValidation(event.target.name, event.target.value),
-        blur: (event: { target: HTMLInputElement }) =>
-          inputValidation(event.target.name, event.target.value),
-        input: (event: { target: HTMLInputElement }) =>
-          inputValidation(event.target.name, event.target.value),
-      },
-    });
-    this.children.inputProfileLogin = new Input({
-      label: 'Логин',
-      type: 'email',
-      name: 'email',
-      value: 'pddddochta@yanddex.ru',
+    this.children.inputProfile = new Input({
+      label: this.props.label,
+      type: this.props.type,
+      name: this.props.name,
+      value: this.props.value,
       class: 'row__input',
       showLabel: false,
       events: {
