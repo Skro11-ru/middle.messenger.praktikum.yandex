@@ -21,11 +21,6 @@ class Block {
 
   private _meta: { props: any };
 
-  /** JSDoc
-   *
-   * @returns {void}
-   * @param propertiesWithChildren
-   */
   constructor(propertiesWithChildren: any = {}) {
     const eventBus = new EventBus();
 
@@ -47,7 +42,7 @@ class Block {
     eventBus.emit(Block.EVENTS.INIT);
   }
 
-  _getChildrenAndProps(childrenAndProperties: any) {
+  private _getChildrenAndProps(childrenAndProperties: any) {
     const properties: Record<string, any> = {};
     const children: Record<string, Block> = {};
 
@@ -191,7 +186,6 @@ class Block {
   }
 
   _makePropsProxy(properties: any) {
-    // Ещё один способ передачи this, но он больше не применяется с приходом ES6+
     // eslint-disable-next-line @typescript-eslint/no-this-alias,unicorn/no-this-assignment
     const self = this;
     return new Proxy(properties, {
@@ -217,14 +211,6 @@ class Block {
   _createDocumentElement(tagName: string) {
     return document.createElement(tagName);
   }
-
-  // show() {
-  //   this.getContent().style.display = 'block';
-  // }
-
-  // hide() {
-  //   this.getContent()!.style.display = 'none';
-  // }
 }
 
 export default Block;
