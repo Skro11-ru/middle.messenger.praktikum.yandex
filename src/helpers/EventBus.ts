@@ -1,7 +1,7 @@
 export class EventBus {
   private readonly listeners: Record<string, Array<() => void>> = {};
 
-  on(event, callback) {
+  on(event: any, callback: any) {
     if (!this.listeners[event]) {
       this.listeners[event] = [];
     }
@@ -9,7 +9,7 @@ export class EventBus {
     this.listeners[event].push(callback);
   }
 
-  off(event, callback) {
+  off(event: any, callback: any) {
     if (!this.listeners[event]) {
       throw new Error(`Нет события: ${event}`);
     }
@@ -19,7 +19,7 @@ export class EventBus {
     );
   }
 
-  emit(event, ...arguments_) {
+  emit(event: any, ...arguments_: any) {
     if (!this.listeners[event]) {
       // eslint-disable-next-line @typescript-eslint/no-throw-literal
       throw new Event(`Нет события: ${event}`);
@@ -27,6 +27,7 @@ export class EventBus {
 
     // eslint-disable-next-line no-restricted-syntax
     for (const listener of this.listeners[event]) {
+      // @ts-ignore
       listener(...arguments_);
     }
   }

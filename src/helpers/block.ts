@@ -82,6 +82,7 @@ class Block {
   }
 
   _createResources() {
+    // @ts-ignore
     const { tagName } = this._meta;
     this._element = this._createDocumentElement(tagName);
   }
@@ -175,6 +176,7 @@ class Block {
         continue;
       }
 
+      // @ts-ignore
       component.getContent()?.append(...stub.childNodes);
 
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion

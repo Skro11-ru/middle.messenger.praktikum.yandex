@@ -82,6 +82,7 @@ export const formValidation = (selectorForm: string) => {
     return false;
   }
   inputs.forEach((input: HTMLInputElement) => {
+    // @ts-ignore
     arrayForm[input.name] = input.value;
   });
 
