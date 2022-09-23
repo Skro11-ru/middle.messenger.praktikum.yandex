@@ -1,0 +1,38 @@
+{
+  "plugins": ["@typescript-eslint", "prettier", "sonarjs", "unicorn"],
+  "extends": [
+    "airbnb-base",
+    "airbnb-typescript/base",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:sonarjs/recommended",
+    "plugin:unicorn/recommended",
+    "plugin:prettier/recommended",
+    "prettier"
+  ],
+  "env": {
+    "es2022": true,
+    "browser": true,
+    "node": true
+  },
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "project": "./tsconfig.json"
+  },
+  "parser": "@typescript-eslint/parser",
+  "rules": {
+    "max-len": [2, 100],
+    "import/prefer-default-export": 0,
+    "@typescript-eslint/no-useless-constructor": 0,
+    "no-useleess-constructor": 0,
+    "unicorn/filename-case": 0,
+    "unicorn/no-array-for-each": 0,
+    //
+    "@typescript-eslint/no-explicit-any": 0,
+    "nicorn/no-null": 0,
+    "class-methods-use-this": 0,
+    "no-underscore-dangle": 0,
+    "@typescript-eslint/no-unused-vars": 0,
+    "unicorn/no-null": 0,
+    "@typescript-eslint/ban-ts-comment": 0
+  }
+}

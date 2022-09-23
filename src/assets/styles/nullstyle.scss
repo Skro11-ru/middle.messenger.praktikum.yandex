@@ -1,0 +1,77 @@
+/* Specify box sizing */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Removing the default styling for ul */
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+/* Removing margins */
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+p,
+ul,
+li,
+figure,
+figcaption,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+/* Set the default basic settings for html */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Set the default basic settings for body */
+body {
+  min-height: 100vh;
+  text-rendering: optimizespeed;
+}
+
+/* Resetting default styles for links */
+a,
+a:visited,
+a:hover {
+  text-decoration: none;
+}
+
+/* Resetting default styles for buttons */
+button {
+  padding: 0;
+  color: inherit;
+  font: inherit;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+/* Making it easy to work with images */
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/* Specify a clear periodicity in the data flow of the article */
+article > * + * {
+  margin-top: 1em;
+}
+
+/* Inheriting fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}

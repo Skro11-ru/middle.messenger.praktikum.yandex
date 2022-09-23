@@ -1,0 +1,17 @@
+.sidebar {
+  display: flex;
+  width: 64px;
+  height: 100%;
+  background-color: $color-light-grey;
+  border-right: 1px solid $color-tertiary;
+
+  &__button {
+    @include link($color-primary);
+
+    width: 28px;
+    height: 28px;
+
+    margin: auto;
+    border-radius: 50%;
+  }
+}

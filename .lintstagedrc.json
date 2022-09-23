@@ -1,0 +1,8 @@
+{
+  "*.{css,scss}": ["npx prettier --check --color", "npx stylelint --color"],
+  "*.{js,jsx,ts,tsx,vue,svelte}": [
+    "npx prettier --check --color",
+    "npx eslint --color"
+  ],
+  "*.{json,md}": ["npx prettier --check --color"]
+}

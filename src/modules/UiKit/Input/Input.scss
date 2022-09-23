@@ -1,0 +1,38 @@
+.input {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+  &__label {
+    @include transition;
+
+    position: absolute;
+    top: 5px;
+    display: block;
+    color: $color-font-secondary;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 13px;
+  }
+
+  &__control {
+    all: unset;
+
+    &:focus + .input__label {
+      position: absolute;
+      top: -10px;
+      font-size: 12px;
+    }
+  }
+
+  &__error {
+    @include transition;
+
+    position: absolute;
+    top: 22px;
+    color: $color-font-danger;
+    font-weight: 400;
+    font-size: 8px;
+    line-height: 8px;
+  }
+}

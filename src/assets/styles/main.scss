@@ -1,0 +1,11 @@
+/* Importing the normalize.scss file. */
+@import 'normalize.css';
+
+/* A partial reset of styles. */
+@import 'nullstyle';
+
+/* Importing the global styles. */
+@import 'global';
+
+/* Importing the fonts file. */
+@import 'fonts';
