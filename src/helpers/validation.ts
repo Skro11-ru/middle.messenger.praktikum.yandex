@@ -9,6 +9,19 @@ const validationRules: Record<string, { rule: RegExp; error: string }> = {
   },
   password: {
     rule: /^(?=.*[A-Za-z])(?=.*\d)[\dA-Za-z]{6,40}$/,
+    // eslint-disable-next-line sonarjs/no-duplicate-string
+    error: 'Обязательно хотя бы одна заглавная буква и цифра. 6-40 символов',
+  },
+  newPassword: {
+    rule: /^(?=.*[A-Za-z])(?=.*\d)[\dA-Za-z]{6,40}$/,
+    error: 'Обязательно хотя бы одна заглавная буква и цифра. 6-40 символов',
+  },
+  oldPassword: {
+    rule: /^(?=.*[A-Za-z])(?=.*\d)[\dA-Za-z]{6,40}$/,
+    error: 'Обязательно хотя бы одна заглавная буква и цифра. 6-40 символов',
+  },
+  newPasswordAgain: {
+    rule: /^(?=.*[A-Za-z])(?=.*\d)[\dA-Za-z]{6,40}$/,
     error: 'Обязательно хотя бы одна заглавная буква и цифра. 6-40 символов',
   },
   password_again: {
@@ -32,6 +45,10 @@ const validationRules: Record<string, { rule: RegExp; error: string }> = {
     rule: /^[A-ZЁА-Я][A-Za-zЁА-яё-]+$/,
     error:
       'Первая буква должна быть заглавной, не допускаются пробелы, цифры и спецсимволы',
+  },
+  message: {
+    rule: /^(?!\s*$).+/,
+    error: 'Поле не должно быть пустым',
   },
 };
 
@@ -70,12 +87,11 @@ export const formValidation = (selectorForm: string) => {
   const form = document.querySelector(`.${selectorForm}`) as HTMLDivElement;
   const inputs = form.querySelectorAll('input');
   const arrayForm: IFormData = {};
-
   inputs.forEach((input: HTMLInputElement) => {
     inputValidation(input.name, input.value);
   });
 
-  const spans = form.querySelectorAll('span');
+  const spans = form.querySelectorAll('.input__error');
   const numberErrors = spans.length > 0 ? spans.length : 0;
   if (numberErrors) {
     showErrorMessage(selectorForm, 'Все поля должны быть заполнены');

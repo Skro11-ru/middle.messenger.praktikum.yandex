@@ -4,9 +4,9 @@ import Block from '../../../../helpers/block';
 import { ProfileSidebar } from '../../components/ProfileSidebar/ProfileSidebar';
 import { ProfileRow } from '../../components/ProfileRow/ProfileRow';
 import { firstCapitalLetter } from '../../../../helpers/firstCapitalLetter';
-import { ProfileAvatar } from '../../components/ProfileAvatar/ProfileAvatar';
 import { Button } from '../../../UiKit/Button/Button';
 import { formValidation } from '../../../../helpers/validation';
+import AuthController from '../../../../controllers/AuthController';
 
 interface IProfileEdit {
   title: string;
@@ -59,30 +59,10 @@ export class ProfileEdit extends Block {
     this.children.profileSidebar = new ProfileSidebar({
       class: 'sidebar',
       events: {
-        click: (event) => {
-          event.preventDefault();
-          window.location.pathname = '/chats';
+        click: () => {
+          AuthController.back();
         },
       },
-    });
-
-    this.children.profileAvatar = new ProfileAvatar({
-      text: 'Поменять аватар',
-      name: 'Иван',
-    });
-
-    this.children.profileEditInfo = new ProfileRow({
-      label: 'Изменить данные',
-      href: '/profileEdit',
-    });
-    this.children.profileEditPassword = new ProfileRow({
-      label: 'Изменить пароль',
-      href: '/profile-edit-password',
-    });
-    this.children.profileExit = new ProfileRow({
-      label: 'Выйти',
-      href: '/',
-      class: 'link--danger',
     });
 
     Object.entries(elements).forEach(([key, value]) => {

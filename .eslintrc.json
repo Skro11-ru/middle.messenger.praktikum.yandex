@@ -33,6 +33,15 @@
     "no-underscore-dangle": 0,
     "@typescript-eslint/no-unused-vars": 0,
     "unicorn/no-null": 0,
-    "@typescript-eslint/ban-ts-comment": 0
+    "@typescript-eslint/ban-ts-comment": 0,
+    "no-param-reassign": 0,
+    "max-classes-per-file": 0,
+    "no-console": 0,
+    "import/no-named-as-default": 0,
+    "no-non-null-assertion": 0,
+    "@typescript-eslint/no-non-null-assertion": 0,
+    "prefer-promise-reject-errors": 0,
+    "no-alert": 0,
+    "sonarjs/cognitive-complexity": 0
   }
 }

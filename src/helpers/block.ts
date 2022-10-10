@@ -1,72 +1,71 @@
 import { nanoid } from 'nanoid';
 import { EventBus } from './EventBus';
 
-class Block {
+class Block<Properties extends Record<string, any> = any> {
   static EVENTS = {
     INIT: 'init',
     FLOW_CDM: 'flow:component-did-mount',
     FLOW_CDU: 'flow:component-did-update',
     FLOW_RENDER: 'flow:render',
-  };
+  } as const;
 
-  public id = nanoid(12);
+  public id = nanoid(6);
 
-  protected props: any;
+  protected props: Properties;
 
-  public children: Record<string, Block>;
+  public children: Record<string, any>;
 
   private eventBus: () => EventBus;
 
   private _element: HTMLElement | null = null;
 
-  private _meta: { props: any };
-
-  constructor(propertiesWithChildren: any = {}) {
+  /** JSDoc
+   *
+   * @returns {void}
+   * @param propertiesWithChildren
+   */
+  public constructor(propertiesWithChildren: Properties) {
     const eventBus = new EventBus();
 
     const { props, children } = this._getChildrenAndProps(
       propertiesWithChildren,
     );
 
-    this._meta = {
-      props,
-    };
-
     this.children = children;
     this.props = this._makePropsProxy(props);
 
     this.eventBus = () => eventBus;
-
+    this.initChildren();
     this._registerEvents(eventBus);
 
     eventBus.emit(Block.EVENTS.INIT);
   }
 
-  private _getChildrenAndProps(childrenAndProperties: any) {
+  private _getChildrenAndProps(childrenAndProperties: Properties): {
+    props: Properties;
+    children: Record<string, Block>;
+  } {
     const properties: Record<string, any> = {};
-    const children: Record<string, Block> = {};
+    const children: Record<string, any> = {};
 
-    // eslint-disable-next-line no-restricted-syntax
-    for (const [key, value] of Object.entries(childrenAndProperties)) {
+    Object.entries(childrenAndProperties).forEach(([key, value]) => {
       if (value instanceof Block) {
         children[key] = value;
       } else {
         properties[key] = value;
       }
-    }
+    });
 
-    return { props: properties, children };
+    return { props: properties as Properties, children };
   }
 
   private _addEvents() {
-    const { events = {} } = this.props as {
+    const { events = {} } = this.props as Properties & {
       events: Record<string, () => void>;
     };
-
-    // eslint-disable-next-line no-restricted-syntax
-    for (const eventName of Object.keys(events)) {
+    Object.keys(events).forEach((eventName) => {
       this._element?.addEventListener(eventName, events[eventName]);
-    }
+    });
   }
 
   private _registerEvents(eventBus: EventBus) {
@@ -74,12 +73,6 @@ class Block {
     eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
     eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
-  }
-
-  _createResources() {
-    // @ts-ignore
-    const { tagName } = this._meta;
-    this._element = this._createDocumentElement(tagName);
   }
 
   private _init() {
@@ -90,7 +83,7 @@ class Block {
 
   protected init() {}
 
-  _componentDidMount() {
+  private _componentDidMount() {
     this.componentDidMount();
   }
 
@@ -99,22 +92,28 @@ class Block {
   public dispatchComponentDidMount() {
     this.eventBus().emit(Block.EVENTS.FLOW_CDM);
 
-    // eslint-disable-next-line no-restricted-syntax
-    for (const child of Object.values(this.children))
-      child.dispatchComponentDidMount();
+    Object.values(this.children).forEach((child) =>
+      child.dispatchComponentDidMount(),
+    );
   }
 
-  private _componentDidUpdate(oldProperties: any, newProperties: any) {
+  private _componentDidUpdate(
+    oldProperties: Properties,
+    newProperties: Properties,
+  ) {
     if (this.componentDidUpdate(oldProperties, newProperties)) {
       this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
     }
   }
 
-  protected componentDidUpdate(oldProperties: any, newProperties: any) {
+  protected componentDidUpdate(
+    oldProperties?: Properties,
+    newProperties?: Properties,
+  ) {
     return true;
   }
 
-  setProps = (nextProperties: any) => {
+  setProps = (nextProperties: Properties) => {
     if (!nextProperties) {
       return;
     }
@@ -127,6 +126,8 @@ class Block {
   }
 
   private _render() {
+    this.initChildren();
+
     const fragment = this.render();
 
     const newElement = fragment.firstElementChild as HTMLElement;
@@ -136,8 +137,11 @@ class Block {
     }
 
     this._element = newElement;
+
     this._addEvents();
   }
+
+  protected initChildren() {}
 
   protected render(): DocumentFragment {
     return new DocumentFragment();
@@ -146,37 +150,63 @@ class Block {
   protected compile(template: (context: any) => string, context: any) {
     const contextAndStubs = { ...context };
 
-    // eslint-disable-next-line no-restricted-syntax
-    for (const [name, component] of Object.entries(this.children)) {
+    /* Object.entries(this.children).forEach(([name, component]) => {
+      if (Array.isArray(component)) {
+        contextAndStubs[name] = component.map((item) => `<div data-id="${item.id}"></div>`);
+      }
       contextAndStubs[name] = `<div data-id="${component.id}"></div>`;
-    }
+    }); */
 
-    const html = template(contextAndStubs);
+    Object.entries(this.children).forEach(
+      ([key, child]: [string, Block<Properties>]) => {
+        if (Array.isArray(child)) {
+          contextAndStubs[key] = child.map(
+            (item) => `<div data-id="${item.id}"></div>`,
+          );
+          return;
+        }
+        contextAndStubs[key] = `<div data-id="${child.id}"></div>`;
+      },
+    );
 
     const temporary = document.createElement('template');
+    // const html = template(contextAndStubs);
 
-    temporary.innerHTML = html;
+    // temp.innerHTML = html;
+    temporary.innerHTML = template(contextAndStubs).split(',').join('');
 
-    // eslint-disable-next-line @typescript-eslint/naming-convention,
-    // no-restricted-syntax,@typescript-eslint/no-unused-vars
-    // eslint-disable-next-line max-len
-    // eslint-disable-next-line no-restricted-syntax,@typescript-eslint/naming-convention,@typescript-eslint/no-unused-vars
-    for (const [_, component] of Object.entries(this.children)) {
-      const stub = temporary.content.querySelector(
-        `[data-id="${component.id}"]`,
-      );
+    /* Object.entries(this.children).forEach(([_, component]) => {
+      const stub = temp.content.querySelector(`[data-id="${component.id}"]`);
 
       if (!stub) {
-        // eslint-disable-next-line no-continue
-        continue;
+        return;
       }
 
-      // @ts-ignore
-      component.getContent()?.append(...stub.childNodes);
+      component.getContent()?.append(...Array.from(stub.childNodes));
 
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       stub.replaceWith(component.getContent()!);
-    }
+
+    }); */
+
+    Object.values(this.children).forEach((child: Block<Properties>) => {
+      if (Array.isArray(child)) {
+        // eslint-disable-next-line array-callback-return
+        child.map((item) => {
+          const stub = temporary.content.querySelector(
+            `[data-id="${item.id}"]`,
+          );
+          if (!stub) return;
+
+          stub.replaceWith(item.getContent()!);
+        });
+        return;
+      }
+      const stub = temporary.content.querySelector(
+        `[data-id="${child.id}"]`,
+      ) as HTMLElement;
+      if (!stub) return;
+      stub.replaceWith(child.getContent()!);
+    });
 
     return temporary.content;
   }
@@ -185,31 +215,30 @@ class Block {
     return this.element;
   }
 
-  _makePropsProxy(properties: any) {
-    // eslint-disable-next-line @typescript-eslint/no-this-alias,unicorn/no-this-assignment
-    const self = this;
+  private _makePropsProxy(properties: any) {
     return new Proxy(properties, {
-      get(target, property) {
+      get: (target, property) => {
         const value = target[property];
         return typeof value === 'function' ? value.bind(target) : value;
       },
-      set(target, property, value) {
-        const oldTarget = { ...target };
-
-        // eslint-disable-next-line no-param-reassign
+      set: (target, property, value) => {
         target[property] = value;
 
-        self.eventBus().emit(Block.EVENTS.FLOW_CDU, oldTarget, target);
+        this.eventBus().emit(Block.EVENTS.FLOW_CDU, { ...target }, target);
         return true;
       },
-      deleteProperty() {
+      deleteProperty: () => {
         throw new Error('Нет доступа');
       },
     });
   }
 
-  _createDocumentElement(tagName: string) {
-    return document.createElement(tagName);
+  show() {
+    this.getContent()!.style.display = 'block';
+  }
+
+  hide() {
+    this.getContent()!.style.display = 'none';
   }
 }
 

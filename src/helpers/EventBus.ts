@@ -22,7 +22,7 @@ export class EventBus {
   emit(event: any, ...arguments_: any) {
     if (!this.listeners[event]) {
       // eslint-disable-next-line @typescript-eslint/no-throw-literal
-      throw new Event(`Нет события: ${event}`);
+      return;
     }
 
     // eslint-disable-next-line no-restricted-syntax

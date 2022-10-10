@@ -5,11 +5,13 @@ import { Button } from '../../UiKit/Button/Button';
 import { Input } from '../../UiKit/Input/Input';
 import * as styles from './Registration.scss';
 import { firstCapitalLetter } from '../../../helpers/firstCapitalLetter';
+import AuthController from '../../../controllers/AuthController';
+import { getFormData } from '../../../helpers/GetFormData';
+import { SignupData } from '../../../api/AuthAPI';
 
 interface IRegistration {
   title: string;
 }
-
 export class Registration extends Block {
   public constructor(properties: IRegistration) {
     super(properties);
@@ -27,7 +29,11 @@ export class Registration extends Block {
         type: 'text',
         name: 'login',
       },
-
+      phone: {
+        label: 'Телефон',
+        type: 'tel',
+        name: 'phone',
+      },
       firstName: {
         label: 'Имя',
         type: 'text',
@@ -72,10 +78,11 @@ export class Registration extends Block {
       label: 'Зарегистрироваться',
       class: 'primary',
       events: {
-        click: (event) => {
+        click: (event: any) => {
           event.preventDefault();
           if (formValidation('registration__form')) {
-            window.location.pathname = '/chats';
+            const formData = getFormData('registration__form');
+            AuthController.signup(formData as SignupData);
           }
         },
       },
@@ -83,8 +90,9 @@ export class Registration extends Block {
 
     this.children.registration = new Button({
       label: 'Войти',
-      class: 'secondary',
-      href: '/login',
+      class: 'secondary button__center',
+      routerLink: true,
+      to: '/login',
     });
   }
 

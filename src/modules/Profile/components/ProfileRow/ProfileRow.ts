@@ -3,15 +3,22 @@ import * as styles from './ProfileRow.scss';
 import Block from '../../../../helpers/block';
 import { Input } from '../../../UiKit/Input/Input';
 import { inputValidation } from '../../../../helpers/validation';
+import { Button } from '../../../UiKit/Button/Button';
 
 interface IProfileRow {
   href?: string;
+  to: string;
   class?: string;
-  label: string;
+  label?: string;
   value?: string;
   isInput?: boolean;
+  routerLink?: boolean;
   name?: string;
   type?: string;
+  placeholder?: string;
+  events?: {
+    click?: (event: Event) => void;
+  };
 }
 
 export class ProfileRow extends Block {
@@ -25,6 +32,7 @@ export class ProfileRow extends Block {
       type: this.props.type,
       name: this.props.name,
       value: this.props.value,
+      placeholder: this.props.placeholder,
       class: 'row__input',
       showLabel: false,
       events: {
@@ -36,6 +44,18 @@ export class ProfileRow extends Block {
           inputValidation(event.target.name, event.target.value),
       },
     });
+    this.children.editProfile = new Button({
+      label: this.props.label,
+      class: this.props.class,
+      routerLink: this.props.routerLink,
+      to: this.props.to,
+    });
+    // this.children.profileEditPassword = new Button({
+    //   label: 'Изменить пароль',
+    //   class: ' button--secondary  button--router-link',
+    //   routerLink: true,
+    //   to: '/profile-edit-password',
+    // });
   }
 
   render() {

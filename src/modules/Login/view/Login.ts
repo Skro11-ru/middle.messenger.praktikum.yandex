@@ -1,9 +1,13 @@
 import template from './Login.hbs';
 import Block from '../../../helpers/block';
-import { inputValidation, formValidation } from '../../../helpers/validation';
+import { inputValidation } from '../../../helpers/validation';
 import { Button } from '../../UiKit/Button/Button';
 import { Input } from '../../UiKit/Input/Input';
 import * as styles from './Login.scss';
+import { getFormData } from '../../../helpers/GetFormData';
+import { SignupData } from '../../../api/AuthAPI';
+// eslint-disable-next-line import/no-named-as-default
+import AuthController from '../../../controllers/AuthController';
 
 interface ILogin {
   title: string;
@@ -45,14 +49,16 @@ export class Login extends Block {
     });
 
     this.children.login = new Button({
-      label: 'Авторизоваться',
+      label: 'Авторизdsdsdоваться',
       class: 'primary',
       events: {
         click: (event) => {
           event.preventDefault();
-          if (formValidation('login__form')) {
-            window.location.pathname = '/chats';
-          }
+          // if (formValidation('login__form')) {
+          const formData = getFormData('login__form');
+          AuthController.signin(formData as SignupData);
+          // window.location.pathname = '/chats';
+          // }
         },
       },
     });
@@ -60,7 +66,8 @@ export class Login extends Block {
     this.children.registration = new Button({
       label: 'Нет аккаунта?',
       class: 'secondary',
-      href: '/registration',
+      routerLink: true,
+      to: '/registration',
     });
   }
 
