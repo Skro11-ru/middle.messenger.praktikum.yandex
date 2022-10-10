@@ -49,7 +49,7 @@ export class Login extends Block {
     });
 
     this.children.login = new Button({
-      label: 'Авторизdsdsdоваться',
+      label: 'Авторизоваться',
       class: 'primary',
       events: {
         click: (event) => {
