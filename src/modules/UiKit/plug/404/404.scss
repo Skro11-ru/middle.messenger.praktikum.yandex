@@ -1,6 +1,6 @@
 .page-404 {
+  display: flex;
   width: 100%;
-  margin: auto;
 
   &__title {
     color: $color-font-primary;
@@ -22,5 +22,9 @@
   .button {
     margin-top: 70px;
     padding: 0;
+  }
+
+  .button--router-link {
+    margin: auto;
   }
 }

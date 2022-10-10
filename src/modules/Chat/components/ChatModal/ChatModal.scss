@@ -1,0 +1,34 @@
+.modal {
+  position: absolute;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(#000, 0.5);
+
+  &__window {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 400px;
+    height: 100%;
+    max-height: 200px;
+    margin: auto;
+    padding: 10px 20px;
+
+    background-color: $color-secondary;
+    border-radius: 10px;
+  }
+
+  &__buttons {
+    margin-top: auto;
+  }
+
+  &__input {
+    height: 50px;
+    text-align: center;
+  }
+
+  &--hidden {
+    display: none;
+  }
+}

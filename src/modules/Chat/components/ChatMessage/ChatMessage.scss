@@ -1,0 +1,38 @@
+.message-outgoing {
+  align-self: flex-end;
+  max-width: 400px;
+  margin-top: 0.5rem;
+  margin-left: auto;
+  padding: 10px;
+  text-align: right;
+  background: $color-grey;
+  border-radius: 10px 10px 0;
+}
+
+.message-incoming {
+  align-self: flex-start;
+  max-width: 400px;
+  margin-top: 0.5rem;
+  padding: 10px;
+  background: $color-grey;
+  border-radius: 0 10px 10px;
+}
+
+.message {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+  &__text {
+    margin-right: 40px;
+    font-size: 12px;
+    line-height: 15px;
+    text-align: start;
+  }
+
+  &__time {
+    align-self: end;
+    font-size: 9px;
+    line-height: 9px;
+  }
+}

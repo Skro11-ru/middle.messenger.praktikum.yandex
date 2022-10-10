@@ -37,6 +37,8 @@
   }
 
   .button--profile-link {
+    display: block;
+    margin-bottom: 10px;
     color: $color-font-secondary;
     font-weight: 500;
     font-size: 12px;
@@ -54,6 +56,18 @@
   &__window {
     flex: 1 0 auto;
   }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.chat-header {
+  &__menu {
+    position: relative;
+  }
 }
 
 .input-message {
@@ -70,5 +84,36 @@
 
   &__input {
     width: 95%;
+  }
+}
+
+.message {
+  padding: 10px;
+  border-radius: 10px 10px 0;
+
+  &:not(:last-child) {
+    margin-bottom: 10px;
+  }
+
+  &--incoming {
+    background-color: transparentize($color-primary, 0.25);
+  }
+
+  &--outgoing {
+    background-color: transparentize($color-font-secondary, 0.9);
+  }
+}
+
+.chat-menu {
+  position: absolute;
+  top: 40px;
+  right: 10px;
+  width: max-content;
+  padding: 10px;
+  border: 1px solid $color-primary;
+  border-radius: 5px;
+
+  &--hidden {
+    display: none;
   }
 }
