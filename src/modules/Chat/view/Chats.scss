@@ -54,7 +54,10 @@
   height: 100%;
 
   &__window {
+    display: flex;
     flex: 1 0 auto;
+    flex-direction: column;
+    padding: 0 10px;
   }
 
   &__header {
@@ -84,23 +87,6 @@
 
   &__input {
     width: 95%;
-  }
-}
-
-.message {
-  padding: 10px;
-  border-radius: 10px 10px 0;
-
-  &:not(:last-child) {
-    margin-bottom: 10px;
-  }
-
-  &--incoming {
-    background-color: transparentize($color-primary, 0.25);
-  }
-
-  &--outgoing {
-    background-color: transparentize($color-font-secondary, 0.9);
   }
 }
 

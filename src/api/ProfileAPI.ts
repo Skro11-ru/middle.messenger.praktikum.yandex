@@ -1,5 +1,4 @@
 import BaseAPI from './BaseAPI';
-// TODO:вынести интерфейсы в отдельный файл при рефакторинге
 
 export interface IEditPassword {
   newPassword: string;
@@ -25,10 +24,6 @@ export interface IProfile {
 }
 
 export class ProfileAPI extends BaseAPI {
-  constructor() {
-    super('');
-  }
-
   editUser(data: IEditProfile) {
     return this.http.put('/user/profile', data);
   }

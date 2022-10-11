@@ -13,9 +13,6 @@ export function set(
     return object;
   }
 
-  // if (typeof path !== 'string') {
-  //   throw new TypeError('path must be string');
-  // }
   // eslint-disable-next-line unicorn/no-array-reduce
   const result = path.split('.').reduceRight<Indexed>(
     (accumulator, key) => ({

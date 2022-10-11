@@ -5,15 +5,13 @@ import { ProfileEdit } from './src/modules/Profile/view/ProfileEdit/ProfileEdit'
 import { Error500 } from './src/modules/UiKit/plug/500/500';
 import { Error404 } from './src/modules/UiKit/plug/404/404';
 import { ChatsPageS } from './src/modules/Chat/view/Chat';
-// eslint-disable-next-line max-len
 import Router from './src/helpers/Router';
 import AuthController from './src/controllers/AuthController';
 // eslint-disable-next-line max-len
 import { ProfileEditPassword } from './src/modules/Profile/view/ProfileEditPassword/ProfileEditPassword';
 import ChatController from './src/controllers/ChatController';
 
-// eslint-disable-next-line @typescript-eslint/naming-convention
-enum routes {
+enum Routes {
   login = '/login',
   registration = '/registration',
   profileEdit = '/profile-edit',
@@ -26,31 +24,39 @@ enum routes {
 
 window.addEventListener('DOMContentLoaded', async () => {
   Router.use('/', Login)
-    .use(routes.login, Login)
-    .use(routes.registration, Registration)
-    .use(routes.profileEdit, ProfileEdit)
-    .use(routes.profile, ProfilePage)
-    .use(routes.profileEditPassword, ProfileEditPassword)
-    .use(routes.chats, ChatsPageS)
-    .use(routes.page404, Error404)
-    .use(routes.page500, Error500)
-    .start();
+    .use(Routes.login, Login)
+    .use(Routes.registration, Registration)
+    .use(Routes.profileEdit, ProfileEdit)
+    .use(Routes.profile, ProfilePage)
+    .use(Routes.profileEditPassword, ProfileEditPassword)
+    .use(Routes.chats, ChatsPageS)
+    .use(Routes.page404, Error404)
+    .use(Routes.page500, Error500);
 
-  // try {
-  await AuthController.fetchUser();
-  await ChatController.getChats();
-  //
-  //   Router.start();
-  //   if (
-  //     window.location.pathname === '/' ||
-  //     window.location.pathname === '/login'
-  //   ) {
-  //     Router.go('/chats');
-  //   }
-  // } catch {
-  //   Router.start();
-  //   if (window.location.pathname !== '/registration') {
-  //     Router.go('/');
-  //   }
-  // }
+  let isProtectedRoute = true;
+
+  switch (window.location.pathname) {
+    case Routes.login:
+    case Routes.registration:
+      isProtectedRoute = false;
+      break;
+    default:
+      break;
+  }
+  try {
+    await AuthController.fetchUser();
+    await ChatController.getChats();
+
+    Router.start();
+
+    if (!isProtectedRoute) {
+      Router.go(Routes.chats);
+    }
+  } catch {
+    Router.start();
+
+    if (isProtectedRoute) {
+      Router.go(Routes.login);
+    }
+  }
 });

@@ -31,12 +31,6 @@ export interface Chat {
 }
 
 export class ChatsAPI extends BaseAPI {
-  protected http!: HTTPTransport;
-
-  constructor() {
-    super('');
-  }
-
   read(): Promise<Chat> {
     return this.http.get('/chats');
   }

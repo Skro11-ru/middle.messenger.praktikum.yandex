@@ -8,7 +8,7 @@ import { ChatItem } from '../components/ChatItem/ChatItem';
 import { formValidation } from '../../../helpers/validation';
 import { getFormData } from '../../../helpers/GetFormData';
 import { ChatMessage } from '../components/ChatMessage/ChatMessage';
-import { withStore } from '../../../helpers/Store';
+import store, { withStore } from '../../../helpers/Store';
 import ChatController from '../../../controllers/ChatController';
 import { ChatOptions } from '../components/ChatOptions/ChatOptions';
 import iconSend from '../../../../static/icons/icon-send.svg';
@@ -25,10 +25,10 @@ type MessageData = {
   user_id: number;
   content: string;
 };
+const enterButtonNumber = 13;
 export class ChatsPage extends Block {
   protected initChildren() {
     this.children.chatList = [];
-    console.log(`############___Chat---32___#######\n`, this.props);
     const lengthText = 30;
     if (this.props?.allChats !== undefined) {
       Object.values(this.props.allChats).forEach((chats: any) => {
@@ -85,7 +85,10 @@ export class ChatsPage extends Block {
       placeholder: 'Сообщение',
       events: {
         keydown: (event) => {
-          if (event.keyCode === 13 && formValidation('control__input')) {
+          if (
+            event.keyCode === enterButtonNumber &&
+            formValidation('control__input')
+          ) {
             const data = getFormData('control__input');
             ChatController.sendMessage(data as { message: string });
           }
@@ -96,7 +99,6 @@ export class ChatsPage extends Block {
     this.children.modal = new ChatModal({
       buttonLabel1: 'Добавить',
       buttonLabel2: 'Закрыть',
-      event: 'addUser',
       chatId: this.props.chatId,
     });
 
@@ -166,6 +168,7 @@ export class ChatsPage extends Block {
               if (item.event === 'deleteChat') {
                 ChatController.deleteChat(this.props.chatId);
               } else {
+                store.set('event', item.event);
                 document
                   .querySelector('.modal')
                   .classList.toggle('modal--hidden');

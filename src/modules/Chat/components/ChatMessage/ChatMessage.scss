@@ -1,27 +1,24 @@
-.message-outgoing {
-  align-self: flex-end;
-  max-width: 400px;
-  margin-top: 0.5rem;
+.message--outgoing {
   margin-left: auto;
-  padding: 10px;
-  text-align: right;
-  background: $color-grey;
-  border-radius: 10px 10px 0;
+  background-color: transparentize($color-font-secondary, 0.9);
 }
 
-.message-incoming {
-  align-self: flex-start;
-  max-width: 400px;
-  margin-top: 0.5rem;
-  padding: 10px;
-  background: $color-grey;
-  border-radius: 0 10px 10px;
+.message--incoming {
+  margin-right: auto;
+  background-color: transparentize($color-primary, 0.25);
 }
 
 .message {
   display: flex;
   flex-direction: column;
   gap: 5px;
+  max-width: 400px;
+  padding: 10px;
+  border-radius: 10px 10px 0;
+
+  &:not(:last-child) {
+    margin-bottom: 10px;
+  }
 
   &__text {
     margin-right: 40px;

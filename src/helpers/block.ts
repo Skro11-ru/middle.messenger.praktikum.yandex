@@ -19,11 +19,6 @@ class Block<Properties extends Record<string, any> = any> {
 
   private _element: HTMLElement | null = null;
 
-  /** JSDoc
-   *
-   * @returns {void}
-   * @param propertiesWithChildren
-   */
   public constructor(propertiesWithChildren: Properties) {
     const eventBus = new EventBus();
 
@@ -150,13 +145,6 @@ class Block<Properties extends Record<string, any> = any> {
   protected compile(template: (context: any) => string, context: any) {
     const contextAndStubs = { ...context };
 
-    /* Object.entries(this.children).forEach(([name, component]) => {
-      if (Array.isArray(component)) {
-        contextAndStubs[name] = component.map((item) => `<div data-id="${item.id}"></div>`);
-      }
-      contextAndStubs[name] = `<div data-id="${component.id}"></div>`;
-    }); */
-
     Object.entries(this.children).forEach(
       ([key, child]: [string, Block<Properties>]) => {
         if (Array.isArray(child)) {
@@ -170,23 +158,7 @@ class Block<Properties extends Record<string, any> = any> {
     );
 
     const temporary = document.createElement('template');
-    // const html = template(contextAndStubs);
-
-    // temp.innerHTML = html;
     temporary.innerHTML = template(contextAndStubs).split(',').join('');
-
-    /* Object.entries(this.children).forEach(([_, component]) => {
-      const stub = temp.content.querySelector(`[data-id="${component.id}"]`);
-
-      if (!stub) {
-        return;
-      }
-
-      component.getContent()?.append(...Array.from(stub.childNodes));
-
-      stub.replaceWith(component.getContent()!);
-
-    }); */
 
     Object.values(this.children).forEach((child: Block<Properties>) => {
       if (Array.isArray(child)) {
@@ -211,8 +183,8 @@ class Block<Properties extends Record<string, any> = any> {
     return temporary.content;
   }
 
-  getContent() {
-    return this.element;
+  getContent(): HTMLElement {
+    return <HTMLElement>this.element;
   }
 
   private _makePropsProxy(properties: any) {
@@ -234,11 +206,11 @@ class Block<Properties extends Record<string, any> = any> {
   }
 
   show() {
-    this.getContent()!.style.display = 'block';
+    this.getContent().style.display = 'block';
   }
 
   hide() {
-    this.getContent()!.style.display = 'none';
+    this.getContent().style.display = 'none';
   }
 }
 

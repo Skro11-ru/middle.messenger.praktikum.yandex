@@ -50,12 +50,6 @@ export class ProfileRow extends Block {
       routerLink: this.props.routerLink,
       to: this.props.to,
     });
-    // this.children.profileEditPassword = new Button({
-    //   label: 'Изменить пароль',
-    //   class: ' button--secondary  button--router-link',
-    //   routerLink: true,
-    //   to: '/profile-edit-password',
-    // });
   }
 
   render() {

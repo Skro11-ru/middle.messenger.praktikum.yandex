@@ -8,14 +8,15 @@ import { formValidation } from '../../../../helpers/validation';
 import Block from '../../../../helpers/block';
 import { getFormData } from '../../../../helpers/GetFormData';
 import ProfileController from '../../../../controllers/ProfileController';
-import store, { withStore } from '../../../../helpers/Store';
+import { withStore } from '../../../../helpers/Store';
 import AuthController from '../../../../controllers/AuthController';
+import router from '../../../../helpers/Router';
 
 interface IProfileEditPassword {
   title: string;
 }
 
-export class ProfileEditPassword extends Block {
+export class BaseProfileEditPassword extends Block {
   public constructor(properties: IProfileEditPassword) {
     super(properties);
   }
@@ -52,7 +53,7 @@ export class ProfileEditPassword extends Block {
 
     this.children.profileAvatar = new ProfileAvatar({
       text: 'Поменять аватар',
-      name: 'Иван',
+      name: this.props.display_name,
     });
 
     Object.entries(elements).forEach(([key, value]) => {
@@ -64,10 +65,6 @@ export class ProfileEditPassword extends Block {
         isInput: true,
       });
     });
-    console.log(
-      `############___ProfileEditPassword---97___#######\n`,
-      this.props,
-    );
 
     this.children.saveButton = new Button({
       label: 'Сохранить',
@@ -77,7 +74,10 @@ export class ProfileEditPassword extends Block {
           event.preventDefault();
           if (formValidation('profile__form')) {
             const { oldPassword, newPassword } = getFormData('profile__form');
-            ProfileController.editPassword({ oldPassword, newPassword });
+            ProfileController.editPassword({
+              oldPassword,
+              newPassword,
+            }).then(router.go('/profile'));
           }
         },
       },
@@ -85,21 +85,9 @@ export class ProfileEditPassword extends Block {
   }
 
   render() {
-    console.log(
-      `############___ProfileEditPassword---88___#######\n`,
-      store.getState(),
-    );
-    console.log(
-      `############___ProfileEditPassword---95___#######\n`,
-      this.props,
-    );
     return this.compile(template, { ...this.props });
   }
 }
 
-// const withUser = withStore((state) => ({ ...state.user }));
-//
-// export const ProfilePage = withUser(ProfilePageBase);
-
 const withUser = withStore((state) => ({ ...state.user }));
-export default withUser(ProfileEditPassword);
+export const ProfileEditPassword = withUser(BaseProfileEditPassword);

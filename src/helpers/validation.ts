@@ -1,7 +1,3 @@
-interface IFormData {
-  login?: string;
-  password?: string;
-}
 const validationRules: Record<string, { rule: RegExp; error: string }> = {
   login: {
     rule: /^[\w-]{3,20}$/,
@@ -37,6 +33,12 @@ const validationRules: Record<string, { rule: RegExp; error: string }> = {
     error: 'Цифры, допускается в начале "плюс". 6-40 символов',
   },
   first_name: {
+    rule: /^[A-ZЁА-Я][A-Za-zЁА-яё-]+$/,
+    error:
+      // eslint-disable-next-line sonarjs/no-duplicate-string
+      'Первая буква должна быть заглавной, не допускаются пробелы, цифры и спецсимволы',
+  },
+  display_name: {
     rule: /^[A-ZЁА-Я][A-Za-zЁА-яё-]+$/,
     error:
       'Первая буква должна быть заглавной, не допускаются пробелы, цифры и спецсимволы',
@@ -86,7 +88,7 @@ export const inputValidation = (nameElement: string, valueInput: string) => {
 export const formValidation = (selectorForm: string) => {
   const form = document.querySelector(`.${selectorForm}`) as HTMLDivElement;
   const inputs = form.querySelectorAll('input');
-  const arrayForm: IFormData = {};
+  const arrayForm: any = {};
   inputs.forEach((input: HTMLInputElement) => {
     inputValidation(input.name, input.value);
   });
@@ -98,7 +100,6 @@ export const formValidation = (selectorForm: string) => {
     return false;
   }
   inputs.forEach((input: HTMLInputElement) => {
-    // @ts-ignore
     arrayForm[input.name] = input.value;
   });
 

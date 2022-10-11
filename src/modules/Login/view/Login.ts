@@ -1,13 +1,13 @@
 import template from './Login.hbs';
 import Block from '../../../helpers/block';
-import { inputValidation } from '../../../helpers/validation';
+import { formValidation, inputValidation } from '../../../helpers/validation';
 import { Button } from '../../UiKit/Button/Button';
 import { Input } from '../../UiKit/Input/Input';
 import * as styles from './Login.scss';
 import { getFormData } from '../../../helpers/GetFormData';
 import { SignupData } from '../../../api/AuthAPI';
-// eslint-disable-next-line import/no-named-as-default
 import AuthController from '../../../controllers/AuthController';
+import router from '../../../helpers/Router';
 
 interface ILogin {
   title: string;
@@ -54,11 +54,12 @@ export class Login extends Block {
       events: {
         click: (event) => {
           event.preventDefault();
-          // if (formValidation('login__form')) {
-          const formData = getFormData('login__form');
-          AuthController.signin(formData as SignupData);
-          // window.location.pathname = '/chats';
-          // }
+          if (formValidation('login__form')) {
+            const formData = getFormData('login__form');
+            AuthController.signin(formData as SignupData).then(
+              router.go('/chats'),
+            );
+          }
         },
       },
     });

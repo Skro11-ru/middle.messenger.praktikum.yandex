@@ -1,3 +1,5 @@
+import CONSTANTS from '../Constants';
+
 export enum Method {
   Get = 'Get',
   Post = 'Post',
@@ -12,7 +14,7 @@ type Options = {
 };
 
 export default class HTTPTransport {
-  static API_URL = 'https://ya-praktikum.tech/api/v2';
+  static API_URL = CONSTANTS.api;
 
   protected endpoint?: string;
 

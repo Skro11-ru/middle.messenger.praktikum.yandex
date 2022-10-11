@@ -12,9 +12,7 @@ export class AuthController {
   async signin(data: SigninData) {
     try {
       await this.api.signin(data);
-
       await this.fetchUser();
-      router.go('/chats');
     } catch (error: any) {
       if (error.reason === 'User already in system') {
         this.logout();

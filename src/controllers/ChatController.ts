@@ -1,6 +1,6 @@
 import { ChatsAPI, TypesChat, TypesUsersChat } from '../api/ChatsAPI';
 import store from '../helpers/Store';
-import router from '../helpers/Router';
+import CONSTANTS from '../Constants';
 
 export class ChatController {
   private readonly api: ChatsAPI;
@@ -41,7 +41,7 @@ export class ChatController {
       store.set('chat', { chatId: id });
     }
     this.socket = new WebSocket(
-      `wss://ya-praktikum.tech/ws/chats/${userId}/${id}/${token}`,
+      `${CONSTANTS.webSocket}/${userId}/${id}/${token}`,
     );
 
     this.socket.addEventListener('close', (event) => {
@@ -128,14 +128,6 @@ export class ChatController {
       await this.getChats();
     } catch (error: any) {
       console.error(error);
-    }
-  }
-
-  async profile() {
-    try {
-      router.go('/settings');
-    } catch (error: any) {
-      console.error(error.message);
     }
   }
 }

@@ -72,7 +72,7 @@ export class BaseProfile extends Block {
 
     this.children.profileAvatar = new ProfileAvatar({
       text: 'Поменять аватар',
-      name: 'Иван',
+      name: this.props.display_name,
     });
 
     this.children.profileEditInfo = new ProfileRow({
