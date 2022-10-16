@@ -9,6 +9,11 @@
     margin-bottom: 2px;
   }
 
+  &__center {
+    display: block;
+    text-align: center;
+  }
+
   &--primary {
     @include link($color-primary);
 
@@ -36,5 +41,21 @@
     font-size: 11px;
     line-height: 11px;
     text-align: center;
+  }
+
+  &--danger {
+    color: $color-font-danger;
+
+    &:hover {
+      color: transparentize($color-font-danger, 0.2);
+    }
+
+    &:active {
+      color: transparentize($color-font-danger, 0.5) a;
+    }
+  }
+
+  &--router-link {
+    cursor: pointer;
   }
 }

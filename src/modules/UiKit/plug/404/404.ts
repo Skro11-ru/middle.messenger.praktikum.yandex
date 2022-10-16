@@ -16,8 +16,9 @@ export class Error404 extends Block {
   init() {
     this.children.backButton = new Button({
       label: 'Назад к чатам',
-      class: 'secondary',
-      href: '/chats',
+      class: ' button--secondary  button--router-link',
+      routerLink: true,
+      to: '/chats',
     });
   }
 

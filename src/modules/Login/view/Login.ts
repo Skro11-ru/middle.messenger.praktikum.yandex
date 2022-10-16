@@ -1,9 +1,13 @@
 import template from './Login.hbs';
 import Block from '../../../helpers/block';
-import { inputValidation, formValidation } from '../../../helpers/validation';
+import { formValidation, inputValidation } from '../../../helpers/validation';
 import { Button } from '../../UiKit/Button/Button';
 import { Input } from '../../UiKit/Input/Input';
 import * as styles from './Login.scss';
+import { getFormData } from '../../../helpers/GetFormData';
+import { SignupData } from '../../../api/AuthAPI';
+import AuthController from '../../../controllers/AuthController';
+import router from '../../../helpers/Router';
 
 interface ILogin {
   title: string;
@@ -51,7 +55,10 @@ export class Login extends Block {
         click: (event) => {
           event.preventDefault();
           if (formValidation('login__form')) {
-            window.location.pathname = '/chats';
+            const formData = getFormData('login__form');
+            AuthController.signin(formData as SignupData).then(
+              router.go('/chats'),
+            );
           }
         },
       },
@@ -60,7 +67,8 @@ export class Login extends Block {
     this.children.registration = new Button({
       label: 'Нет аккаунта?',
       class: 'secondary',
-      href: '/registration',
+      routerLink: true,
+      to: '/registration',
     });
   }
 

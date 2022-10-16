@@ -1,13 +1,22 @@
-interface IFormData {
-  login?: string;
-  password?: string;
-}
 const validationRules: Record<string, { rule: RegExp; error: string }> = {
   login: {
     rule: /^[\w-]{3,20}$/,
     error: 'Латиница, цифры, дефис и нижнее подчёркивание. 3-20 символов',
   },
   password: {
+    rule: /^(?=.*[A-Za-z])(?=.*\d)[\dA-Za-z]{6,40}$/,
+    // eslint-disable-next-line sonarjs/no-duplicate-string
+    error: 'Обязательно хотя бы одна заглавная буква и цифра. 6-40 символов',
+  },
+  newPassword: {
+    rule: /^(?=.*[A-Za-z])(?=.*\d)[\dA-Za-z]{6,40}$/,
+    error: 'Обязательно хотя бы одна заглавная буква и цифра. 6-40 символов',
+  },
+  oldPassword: {
+    rule: /^(?=.*[A-Za-z])(?=.*\d)[\dA-Za-z]{6,40}$/,
+    error: 'Обязательно хотя бы одна заглавная буква и цифра. 6-40 символов',
+  },
+  newPasswordAgain: {
     rule: /^(?=.*[A-Za-z])(?=.*\d)[\dA-Za-z]{6,40}$/,
     error: 'Обязательно хотя бы одна заглавная буква и цифра. 6-40 символов',
   },
@@ -26,12 +35,22 @@ const validationRules: Record<string, { rule: RegExp; error: string }> = {
   first_name: {
     rule: /^[A-ZЁА-Я][A-Za-zЁА-яё-]+$/,
     error:
+      // eslint-disable-next-line sonarjs/no-duplicate-string
+      'Первая буква должна быть заглавной, не допускаются пробелы, цифры и спецсимволы',
+  },
+  display_name: {
+    rule: /^[A-ZЁА-Я][A-Za-zЁА-яё-]+$/,
+    error:
       'Первая буква должна быть заглавной, не допускаются пробелы, цифры и спецсимволы',
   },
   second_name: {
     rule: /^[A-ZЁА-Я][A-Za-zЁА-яё-]+$/,
     error:
       'Первая буква должна быть заглавной, не допускаются пробелы, цифры и спецсимволы',
+  },
+  message: {
+    rule: /^(?!\s*$).+/,
+    error: 'Поле не должно быть пустым',
   },
 };
 
@@ -69,20 +88,18 @@ export const inputValidation = (nameElement: string, valueInput: string) => {
 export const formValidation = (selectorForm: string) => {
   const form = document.querySelector(`.${selectorForm}`) as HTMLDivElement;
   const inputs = form.querySelectorAll('input');
-  const arrayForm: IFormData = {};
-
+  const arrayForm: any = {};
   inputs.forEach((input: HTMLInputElement) => {
     inputValidation(input.name, input.value);
   });
 
-  const spans = form.querySelectorAll('span');
+  const spans = form.querySelectorAll('.input__error');
   const numberErrors = spans.length > 0 ? spans.length : 0;
   if (numberErrors) {
     showErrorMessage(selectorForm, 'Все поля должны быть заполнены');
     return false;
   }
   inputs.forEach((input: HTMLInputElement) => {
-    // @ts-ignore
     arrayForm[input.name] = input.value;
   });
 

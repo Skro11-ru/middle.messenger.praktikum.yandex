@@ -8,10 +8,17 @@
     {{{inputProfile}}}
 
   </div>
+
+
+{{else if routerLink}}
+  <div class='row'>
+    {{{editProfile}}}
+
+
+  </div>
 {{else}}
   <div class='row'>
     <div class='row__label'>{{label}}</div>
     <div class='row__value'>{{value}}</div>
-
   </div>
 {{/if}}

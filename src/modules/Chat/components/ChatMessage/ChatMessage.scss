@@ -1,0 +1,35 @@
+.message--outgoing {
+  margin-left: auto;
+  background-color: transparentize($color-font-secondary, 0.9);
+}
+
+.message--incoming {
+  margin-right: auto;
+  background-color: transparentize($color-primary, 0.25);
+}
+
+.message {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  max-width: 400px;
+  padding: 10px;
+  border-radius: 10px 10px 0;
+
+  &:not(:last-child) {
+    margin-bottom: 10px;
+  }
+
+  &__text {
+    margin-right: 40px;
+    font-size: 12px;
+    line-height: 15px;
+    text-align: start;
+  }
+
+  &__time {
+    align-self: end;
+    font-size: 9px;
+    line-height: 9px;
+  }
+}

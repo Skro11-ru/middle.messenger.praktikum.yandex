@@ -1,5 +1,12 @@
 {{#if href}}
   <a class='button button--{{class}} button--link' href='{{href}}'>{{label}}</a>
+  {{else if routerLink}}
+  <span class="button--{{ class }}">{{ label }}</span>
+{{else if icon}}
+  <button class='button'>
+    <img src='{{icon}}' alt='icon'>
+  </button>
 {{else}}
   <button class='button button--{{class}}'>{{label}}</button>
 {{/if}}
+
