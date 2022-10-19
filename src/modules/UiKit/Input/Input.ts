@@ -14,7 +14,10 @@ interface IInput {
     blur?: (event: { target: HTMLInputElement }) => void;
     focus?: (event: { target: HTMLInputElement }) => void;
     input?: (event: { target: HTMLInputElement }) => void;
-    keydown?: (event: { target: HTMLInputElement }) => void;
+    keydown?: (event: {
+      keyCode: number;
+      target: KeyboardEvent;
+    }) => KeyboardEvent;
   };
 }
 

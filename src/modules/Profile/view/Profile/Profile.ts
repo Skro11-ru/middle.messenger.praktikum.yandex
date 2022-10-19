@@ -113,4 +113,5 @@ export class BaseProfile extends Block {
 }
 
 const withUser = withStore((state) => ({ ...state.user }));
+// @ts-ignore
 export const ProfilePage = withUser(BaseProfile);

@@ -7,15 +7,10 @@ import * as styles from './Login.scss';
 import { getFormData } from '../../../helpers/GetFormData';
 import { SignupData } from '../../../api/AuthAPI';
 import AuthController from '../../../controllers/AuthController';
-import router from '../../../helpers/Router';
 
-interface ILogin {
-  title: string;
-}
-
-export class Login extends Block {
-  public constructor(properties: ILogin) {
-    super(properties);
+export class LoginModule extends Block {
+  public constructor() {
+    super('');
   }
 
   init() {
@@ -52,13 +47,12 @@ export class Login extends Block {
       label: 'Авторизоваться',
       class: 'primary',
       events: {
-        click: (event) => {
+        click: (event: any) => {
           event.preventDefault();
           if (formValidation('login__form')) {
             const formData = getFormData('login__form');
-            AuthController.signin(formData as SignupData).then(
-              router.go('/chats'),
-            );
+            // @ts-ignore
+            AuthController.signin(formData as SignupData);
           }
         },
       },

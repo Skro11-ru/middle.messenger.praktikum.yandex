@@ -50,7 +50,7 @@ class Route {
 class Router {
   private static __instance: Router;
 
-  private routes: Route[] = [];
+  routes: Route[] = [];
 
   private currentRoute: Route | null = null;
 

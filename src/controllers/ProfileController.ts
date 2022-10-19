@@ -25,15 +25,21 @@ export class ProfileController {
     try {
       await this.api.editUser(data);
       await this.fetchUser();
+      router.go('/profile');
     } catch (error: any) {
       console.error(error);
     }
   }
 
   async editPassword(data: IEditPassword) {
-    this.api.editPassword(data).catch((error) => {
-      alert(error.reason);
-    });
+    this.api
+      .editPassword(data)
+      .then(() => {
+        router.go('/settings');
+      })
+      .catch((error) => {
+        alert(error.reason);
+      });
   }
 
   async fetchUser() {

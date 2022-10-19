@@ -3,11 +3,11 @@ import * as styles from './ChatMenuItem.scss';
 import Block from '../../../../helpers/block';
 
 interface IChatMenuItem {
-  title: string;
+  title?: string;
   text?: string;
   time?: string;
   event?: string;
-  count_mess: number;
+  count_mess?: number;
   events?: {
     click?: () => void;
   };

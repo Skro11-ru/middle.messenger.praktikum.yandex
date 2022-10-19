@@ -10,7 +10,6 @@ import AuthController from '../../../../controllers/AuthController';
 import { withStore } from '../../../../helpers/Store';
 import ProfileController from '../../../../controllers/ProfileController';
 import { getFormData } from '../../../../helpers/GetFormData';
-import router from '../../../../helpers/Router';
 
 interface IProfileEdit {
   title: string;
@@ -90,13 +89,12 @@ export class BaseProfileEdit extends Block {
       label: 'Сохранить',
       class: 'primary',
       events: {
-        click: (event) => {
+        click: (event: { preventDefault: () => void }) => {
           event.preventDefault();
           if (formValidation('profile__form')) {
             const data = getFormData('profile__form');
-            ProfileController.editUser(data as IProfile).then(
-              router.go('/profile'),
-            );
+            // @ts-ignore
+            ProfileController.editUser(data as IProfile).then();
           }
         },
       },
@@ -109,4 +107,5 @@ export class BaseProfileEdit extends Block {
 }
 
 const withUser = withStore((state) => ({ ...state.user }));
+// @ts-ignore
 export const ProfileEdit = withUser(BaseProfileEdit);

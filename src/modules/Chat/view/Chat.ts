@@ -11,21 +11,20 @@ import { ChatMessage } from '../components/ChatMessage/ChatMessage';
 import store, { withStore } from '../../../helpers/Store';
 import ChatController from '../../../controllers/ChatController';
 import { ChatOptions } from '../components/ChatOptions/ChatOptions';
+// @ts-ignore
 import iconSend from '../../../../static/icons/icon-send.svg';
+// @ts-ignore
 import iconAttach from '../../../../static/icons/icon-attach.svg';
+// @ts-ignore
 import iconDots from '../../../../static/icons/icon-dots.svg';
 import { ChatMenuItem } from '../components/ChatMenuItem/ChatMenuItem';
 import { ChatModal } from '../components/ChatModal/ChatModal';
 
-type ChatsPageProperties = {
-  title: string;
-};
 type MessageData = {
   time: Date;
   user_id: number;
   content: string;
 };
-const enterButtonNumber = 13;
 export class ChatsPage extends Block {
   protected initChildren() {
     this.children.chatList = [];
@@ -41,15 +40,15 @@ export class ChatsPage extends Block {
             name: chats.title,
             text,
             count_mess: chats.unread_count,
-            events: {
-              click: () => {
-                ChatController.getChat(
-                  chats.id,
-                  this.props.user.id,
-                  chats.title,
-                );
-              },
-            },
+            // events: {
+            //   click: () => {
+            //     ChatController.getChat(
+            //       chats.id,
+            //       this.props.user.id,
+            //       chats.title,
+            //     );
+            //   },
+            // },
           }),
         );
       });
@@ -78,22 +77,24 @@ export class ChatsPage extends Block {
       });
       this.children.messages.reverse();
     }
+    // @ts-ignore
+    // @ts-ignore
     this.children.inputMess = new Input({
       name: 'message',
       type: 'text',
       class: 'chat-input-mess',
       placeholder: 'Сообщение',
-      events: {
-        keydown: (event) => {
-          if (
-            event.keyCode === enterButtonNumber &&
-            formValidation('control__input')
-          ) {
-            const data = getFormData('control__input');
-            ChatController.sendMessage(data as { message: string });
-          }
-        },
-      },
+      // events: {
+      //   keydown: (event) => {
+      //     if (
+      //       event.keyCode === enterButtonNumber &&
+      //       formValidation('control__input')
+      //     ) {
+      //       const data = getFormData('control__input');
+      //       ChatController.sendMessage(data as { message: string });
+      //     }
+      //   },
+      // },
     });
 
     this.children.modal = new ChatModal({
@@ -159,6 +160,7 @@ export class ChatsPage extends Block {
     ];
     this.children.chatMenu = [];
     chatMenu.forEach((item) => {
+      // @ts-ignore
       this.children.chatMenu.push(
         new ChatMenuItem({
           title: item.title,
@@ -170,7 +172,7 @@ export class ChatsPage extends Block {
               } else {
                 store.set('event', item.event);
                 document
-                  .querySelector('.modal')
+                  .querySelector('.modal')!
                   .classList.toggle('modal--hidden');
               }
             },

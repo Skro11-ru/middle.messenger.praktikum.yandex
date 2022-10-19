@@ -33,7 +33,7 @@ export class ChatModal extends Block {
         class: 'primary',
         routerLink: false,
         events: {
-          click: (event) => {
+          click: (event: any) => {
             event.preventDefault();
             const data = getFormData('modal__window');
             switch (store.getState().event) {
@@ -61,10 +61,10 @@ export class ChatModal extends Block {
         class: 'secondary',
         routerLink: false,
         events: {
-          click: (event) => {
+          click: (event: any) => {
             event.preventDefault();
 
-            document.querySelector('.modal').classList.toggle('modal--hidden');
+            document.querySelector('.modal')?.classList.toggle('modal--hidden');
           },
         },
       }),

@@ -8,7 +8,7 @@ interface IChatItem {
   time?: string;
   count_mess: number;
   events?: {
-    click?: () => void;
+    click?: () => KeyboardEvent;
   };
 }
 
