@@ -40,15 +40,6 @@ export class ChatsPage extends Block {
             name: chats.title,
             text,
             count_mess: chats.unread_count,
-            // events: {
-            //   click: () => {
-            //     ChatController.getChat(
-            //       chats.id,
-            //       this.props.user.id,
-            //       chats.title,
-            //     );
-            //   },
-            // },
           }),
         );
       });
@@ -77,24 +68,11 @@ export class ChatsPage extends Block {
       });
       this.children.messages.reverse();
     }
-    // @ts-ignore
-    // @ts-ignore
     this.children.inputMess = new Input({
       name: 'message',
       type: 'text',
       class: 'chat-input-mess',
       placeholder: 'Сообщение',
-      // events: {
-      //   keydown: (event) => {
-      //     if (
-      //       event.keyCode === enterButtonNumber &&
-      //       formValidation('control__input')
-      //     ) {
-      //       const data = getFormData('control__input');
-      //       ChatController.sendMessage(data as { message: string });
-      //     }
-      //   },
-      // },
     });
 
     this.children.modal = new ChatModal({

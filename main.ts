@@ -23,9 +23,6 @@ enum Routes {
 }
 
 window.addEventListener('DOMContentLoaded', async () => {
-  // @ts-ignore
-  // @ts-ignore
-  // @ts-ignore
   Router.use('/', LoginModule)
     .use(Routes.login, LoginModule)
     .use(Routes.registration, RegistrationModule)
