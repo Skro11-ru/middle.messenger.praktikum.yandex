@@ -6,7 +6,7 @@
     "start": "npm run build && node server.js",
     "clear": "rimraf ./dist",
     "dev": "webpack  --mode=development --progress  && webpack serve",
-    "build": "webpack --mode=production --node-env=production",
+    "build": "webpack --mode=production --node-env=development",
     "lint:css": "stylelint . --color",
     "lint:js": "eslint . --color",
     "format": "prettier . --ignore-unknown --check --color",
