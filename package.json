@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start": "npm run clear && npm run build && node server.js",
+    "start": "npm run build && node server.js",
     "clear": "rimraf ./dist",
     "dev": "webpack  --mode=development --progress  && webpack serve",
     "build": "webpack --mode=production --node-env=production",
