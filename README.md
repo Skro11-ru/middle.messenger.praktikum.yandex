@@ -4,7 +4,7 @@
 
 ### Результат выполнения:
 
-> [Просмотр](https://messenger-yandex4.netlify.app/)
+> [Просмотр](https://messenger-yandex4.herokuapp.com/)
 
 ### Техническое задание:
 
