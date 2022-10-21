@@ -40,6 +40,15 @@ export class ChatsPage extends Block {
             name: chats.title,
             text,
             count_mess: chats.unread_count,
+            events: {
+              click: () => {
+                ChatController.getChat(
+                  chats.id,
+                  this.props.user.id,
+                  chats.title,
+                );
+              },
+            },
           }),
         );
       });

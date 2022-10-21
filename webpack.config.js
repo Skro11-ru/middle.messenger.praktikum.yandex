@@ -66,8 +66,12 @@ const config = {
         type: 'asset',
       },
       {
-        test: /\.svg$/,
-        loader: 'svg-inline-loader',
+        test: /\.(svg)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+          },
+        ],
       },
 
       // Add your rules for custom modules here

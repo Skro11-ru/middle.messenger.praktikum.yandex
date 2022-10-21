@@ -68,6 +68,9 @@ export class ChatController {
 
       if (!user) {
         throw new SyntaxError('Ошибка');
+      } else if (typeof user === 'object' && user.type === 'message') {
+        const messages = [user, ...store.getState().chat];
+        store.set('chat', messages);
       } else {
         this.data = {
           ...user,
