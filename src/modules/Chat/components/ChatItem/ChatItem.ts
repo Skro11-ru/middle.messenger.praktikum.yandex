@@ -8,12 +8,17 @@ interface IChatItem {
   time?: string;
   count_mess: number;
   events?: {
-    click?: () => void;
+    click?: () => KeyboardEvent;
   };
 }
 
 export class ChatItem extends Block {
-  public constructor(properties: IChatItem) {
+  public constructor(properties: {
+    count_mess: number;
+    name: any;
+    text: string | undefined;
+    events: { click: () => void };
+  }) {
     super(properties);
   }
 

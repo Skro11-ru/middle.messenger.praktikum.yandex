@@ -7,7 +7,7 @@ import { Button } from '../../../UiKit/Button/Button';
 
 interface IProfileRow {
   href?: string;
-  to: string;
+  to?: string;
   class?: string;
   label?: string;
   value?: string;

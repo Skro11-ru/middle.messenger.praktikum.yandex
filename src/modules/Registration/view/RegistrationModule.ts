@@ -9,12 +9,9 @@ import AuthController from '../../../controllers/AuthController';
 import { getFormData } from '../../../helpers/GetFormData';
 import { SignupData } from '../../../api/AuthAPI';
 
-interface IRegistration {
-  title: string;
-}
-export class Registration extends Block {
-  public constructor(properties: IRegistration) {
-    super(properties);
+export class RegistrationModule extends Block {
+  public constructor() {
+    super('');
   }
 
   init() {

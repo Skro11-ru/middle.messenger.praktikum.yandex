@@ -3,14 +3,9 @@ import Block from '../../../../helpers/block';
 import * as styles from './404.scss';
 import { Button } from '../../Button/Button';
 
-interface IError404 {
-  title: string;
-  text: string;
-}
-
 export class Error404 extends Block {
-  constructor(properties: IError404) {
-    super(properties);
+  constructor() {
+    super('');
   }
 
   init() {

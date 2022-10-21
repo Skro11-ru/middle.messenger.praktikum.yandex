@@ -1,11 +1,11 @@
 import CONSTANTS from '../Constants';
 
 export enum Method {
-  Get = 'Get',
-  Post = 'Post',
-  Put = 'Put',
-  Patch = 'Patch',
-  Delete = 'Delete',
+  GET = 'GET',
+  POST = 'POST',
+  PUT = 'PUT',
+  PATCH = 'PATCH',
+  DELETE = 'DELETE',
 }
 
 type Options = {
@@ -31,14 +31,14 @@ export default class HTTPTransport {
     data?: unknown,
   ): Promise<Response> {
     return this.request<Response>(this.endpoint + path, {
-      method: Method.Post,
+      method: Method.POST,
       data,
     });
   }
 
   public put<Response = void>(path: string, data: unknown): Promise<Response> {
     return this.request<Response>(this.endpoint + path, {
-      method: Method.Put,
+      method: Method.PUT,
       data,
     });
   }
@@ -48,14 +48,14 @@ export default class HTTPTransport {
     data: unknown,
   ): Promise<Response> {
     return this.request<Response>(this.endpoint + path, {
-      method: Method.Patch,
+      method: Method.PATCH,
       data,
     });
   }
 
   public delete<Response>(path: string, data?: unknown): Promise<Response> {
     return this.request(this.endpoint + path, {
-      method: Method.Delete,
+      method: Method.DELETE,
       data,
     });
   }
@@ -63,7 +63,7 @@ export default class HTTPTransport {
   private request<Response>(
     url: string,
     // eslint-disable-next-line unicorn/no-object-as-default-parameter
-    options: Options = { method: Method.Get },
+    options: Options = { method: Method.GET },
   ): Promise<Response> {
     const { method, data } = options;
 
@@ -92,7 +92,7 @@ export default class HTTPTransport {
       xhr.withCredentials = true;
       xhr.responseType = 'json';
 
-      if (method === Method.Get || !data) {
+      if (method === Method.GET || !data) {
         xhr.send();
       } else {
         xhr.send(JSON.stringify(data));

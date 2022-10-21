@@ -1,5 +1,5 @@
-import { Login } from './src/modules/Login/view/Login';
-import { Registration } from './src/modules/Registration/view/Registration';
+import { LoginModule } from './src/modules/Login/view/LoginModule';
+import { RegistrationModule } from './src/modules/Registration/view/RegistrationModule';
 import { ProfilePage } from './src/modules/Profile/view/Profile/Profile';
 import { ProfileEdit } from './src/modules/Profile/view/ProfileEdit/ProfileEdit';
 import { Error500 } from './src/modules/UiKit/plug/500/500';
@@ -23,9 +23,9 @@ enum Routes {
 }
 
 window.addEventListener('DOMContentLoaded', async () => {
-  Router.use('/', Login)
-    .use(Routes.login, Login)
-    .use(Routes.registration, Registration)
+  Router.use('/', LoginModule)
+    .use(Routes.login, LoginModule)
+    .use(Routes.registration, RegistrationModule)
     .use(Routes.profileEdit, ProfileEdit)
     .use(Routes.profile, ProfilePage)
     .use(Routes.profileEditPassword, ProfileEditPassword)

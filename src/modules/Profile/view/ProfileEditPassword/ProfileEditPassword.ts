@@ -10,7 +10,6 @@ import { getFormData } from '../../../../helpers/GetFormData';
 import ProfileController from '../../../../controllers/ProfileController';
 import { withStore } from '../../../../helpers/Store';
 import AuthController from '../../../../controllers/AuthController';
-import router from '../../../../helpers/Router';
 
 interface IProfileEditPassword {
   title: string;
@@ -70,14 +69,15 @@ export class BaseProfileEditPassword extends Block {
       label: 'Сохранить',
       class: 'primary',
       events: {
-        click: (event) => {
+        click: (event: { preventDefault: () => void }) => {
           event.preventDefault();
           if (formValidation('profile__form')) {
             const { oldPassword, newPassword } = getFormData('profile__form');
+            // @ts-ignore
             ProfileController.editPassword({
               oldPassword,
               newPassword,
-            }).then(router.go('/profile'));
+            }).then();
           }
         },
       },
@@ -90,4 +90,5 @@ export class BaseProfileEditPassword extends Block {
 }
 
 const withUser = withStore((state) => ({ ...state.user }));
+// @ts-ignore
 export const ProfileEditPassword = withUser(BaseProfileEditPassword);
